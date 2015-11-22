@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.example.justinas.vutimer.ChronometerClass">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="178dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_button"
+        android:id="@+id/startButton"
+        android:layout_below="@+id/chronometer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pause_button"
+        android:id="@+id/pauseButton"
+        android:layout_below="@+id/startButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stop_button"
+        android:id="@+id/stopButton"
+        android:layout_below="@+id/pauseButton"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

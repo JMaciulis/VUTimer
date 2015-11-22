@@ -22,9 +22,7 @@ import com.example.justinas.vutimer.model.CourseListItem;
 import java.util.List;
 import java.util.ArrayList;
 
-/**
- * Created by Justinas on 11/12/2015.
- */
+
 public class CourseListFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
     OnHeadlineSelectedListener mCallback;
@@ -34,6 +32,9 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
 
     CourseListAdapter adapter;
     private List<CourseListItem> courseListItems;
+
+
+
 
 
     @Override
@@ -73,25 +74,12 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
 
 
     public interface OnHeadlineSelectedListener {
-        public void onCourseSelected(CourseListItem cItem);
+        void onCourseSelected(CourseListItem cItem);
     }
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (OnHeadlineSelectedListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }
 
     public void setCourseListItems(List<CourseListItem> list){
         this.courseListItems = list;
-
     }
 
 }

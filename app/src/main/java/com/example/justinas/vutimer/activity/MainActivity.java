@@ -1,6 +1,7 @@
 package com.example.justinas.vutimer.activity;
 
 import android.content.res.Configuration;
+import android.support.annotation.CheckResult;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.justinas.vutimer.ChronometerClass;
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.database.database;
 import com.example.justinas.vutimer.model.CourseListItem;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+        mDrawerList.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, mPlanetTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -153,12 +155,15 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
                 break;
             case 0:
                 list = true;
+
                 CourseListFragment CLF = new CourseListFragment();
                 CLF.setCourseListItems(db.getCourseListItemList());
                 listFragment = CLF;
 
                 title = getString(R.string.title_courses);
                 break;
+            case 2:
+                fragment = new ChronometerClass();
             default: break;
         }
         if(!list) {
