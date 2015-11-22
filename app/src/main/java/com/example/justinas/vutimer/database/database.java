@@ -46,6 +46,9 @@ public class database {
 
         this.courseListItemList = list;
     }
+    public void addCourseListItemToList(CourseListItem courseListItem){
+        courseListItemList.add(courseListItem);
+    }
     public List<CourseListItem> getCourseListItemList(){
         return courseListItemList;
     }

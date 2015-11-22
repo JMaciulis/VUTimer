@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,17 +30,14 @@ import java.util.ArrayList;
 public class CourseListFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
     OnHeadlineSelectedListener mCallback;
-
-    String[] courseNames;
-    String[] courseDescr;
-
     CourseListAdapter adapter;
     private List<CourseListItem> courseListItems;
 
 
-
-
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        inflater.inflate(R.menu.courses_list_toolbar, menu);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceStace){
         return inflater.inflate(R.layout.course_list_fragment,null,false);
@@ -45,18 +46,7 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        /*
-        courseNames = getResources().getStringArray(R.array.courseNameArr);
-        courseDescr = getResources().getStringArray(R.array.courseDescrArr);
 
-        courseListItems = new ArrayList<CourseListItem>();
-
-        for (int i = 0; i < courseNames.length; i++) {
-            CourseListItem items = new CourseListItem(courseNames[i],courseDescr[i]);
-
-            courseListItems.add(items);
-        }
-        */
         adapter = new CourseListAdapter(getActivity(), courseListItems);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
@@ -69,7 +59,20 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
         Toast.makeText(getActivity(), courseListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
                 .show();
 
-        mCallback.onCourseSelected(courseListItems.get(position));
+
+        //mCallback.onCourseSelected(courseListItems.get(position));
+
+        CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
+        coursePreviewFragment.setItem(courseListItems.get(position));
+
+        //fragment.setText(cItem.getTitle(),cItem.getDescription());
+
+
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
     }
 
 

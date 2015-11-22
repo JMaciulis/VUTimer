@@ -34,13 +34,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements CourseListFragment.OnHeadlineSelectedListener {
     private Toolbar toolbar;
 
-    private database db;
+    public static database db;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mPlanetTitles;
+    private String[] drawerMenu;
     private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mPlanetTitles = getResources().getStringArray(R.array.drawerMenu);
+        drawerMenu = getResources().getStringArray(R.array.drawerMenu);
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, drawerMenu));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
             displayView(position);
             // Highlight the selected item, update the title, and close the drawer
             mDrawerList.setItemChecked(position, true);
-            setTitle(mPlanetTitles[position]);
+            setTitle(drawerMenu[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
 
     }
@@ -148,19 +148,15 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
 
         String title = getString(R.string.app_name);
         switch(position){
-            case 1:
+            case 0:
                 list = false;
                 fragment = new CoursesListFragment();
-                title = getString(R.string.title_courses);
                 break;
-            case 0:
+            case 1:
                 list = true;
-
                 CourseListFragment CLF = new CourseListFragment();
                 CLF.setCourseListItems(db.getCourseListItemList());
                 listFragment = CLF;
-
-                title = getString(R.string.title_courses);
                 break;
             case 2:
                 fragment = new ChronometerClass();
@@ -174,8 +170,6 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
-                getSupportActionBar().setTitle(title);
-
             }
         }else{
             if (listFragment != null) {
@@ -184,8 +178,6 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
                 fragmentTransaction.replace(R.id.container_body, listFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
-                getSupportActionBar().setTitle(title);
 
             }
         }
@@ -230,7 +222,10 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         fragmentTransaction.replace(R.id.container_body, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        getSupportActionBar().setTitle(cItem.getTitle());
+        setTitle(cItem.getTitle());
 
+    }
+    public static database getDb(){
+        return db;
     }
 }
