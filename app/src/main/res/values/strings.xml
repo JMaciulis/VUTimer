@@ -35,21 +35,21 @@
     </string-array>
 
     <string-array name="taskNameArr">
-        <item>Home</item>
-        <item>Tutorials</item>
-        <item>My Apps</item>
-        <item>OS Versions</item>
-        <item>Tools</item>
-        <item>About Us</item>
+        <item>Task Home</item>
+        <item>Task Tutorials</item>
+        <item>Task My Apps</item>
+        <item>Task OS Versions</item>
+        <item>Task Tools</item>
+        <item>Task About Us</item>
     </string-array>
 
     <string-array name="taskDescrArr">
-        <item>Home</item>
-        <item>Tutorials</item>
-        <item>My Apps</item>
-        <item>OS Versions</item>
-        <item>Tools</item>
-        <item>About Us</item>
+        <item>Home1</item>
+        <item>Tutorials1</item>
+        <item>My Apps1</item>
+        <item>OS Versions1</item>
+        <item>Tools1</item>
+        <item>About Us1</item>
     </string-array>
 
     <string-array name="drawerMenu">

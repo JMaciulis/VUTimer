@@ -24,9 +24,10 @@ import android.widget.Toast;
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.database.database;
 import com.example.justinas.vutimer.model.CourseListItem;
+import com.example.justinas.vutimer.model.TaskListItem;
 
 
-public class MainActivity extends AppCompatActivity implements CourseListFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity implements CourseListFragment.OnHeadlineSelectedListener, TaskListFragment.OnHeadlineSelectedListener {
     private Toolbar toolbar;
 
     public static database db;
@@ -118,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
             case R.id.action_add_new_course_item:
                 displayView(11);
                 return true;
+            case R.id.action_add_new_task_item:
+                displayView(12);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -149,17 +153,21 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         switch(position){
             case 0:
                 list = false;
-                fragment = new CoursesListFragment();
+                fragment = new ChronometerClass();
                 break;
             case 1:
                 list = true;
                 listFragment = new CourseListFragment();
                 break;
             case 2:
-                fragment = new ChronometerClass();
+                list = true;
+                listFragment = new TaskListFragment();
                 break;
             case 11:
                 fragment = new CourseNewItemCreate();
+                break;
+            case 12:
+                fragment = new TaskNewItemCreate();
                 break;
             default: break;
         }
@@ -182,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
 
             }
         }
-        setTitle(title);
+        //setTitle(title);
     }
     @Override
     public void setTitle(CharSequence title) {
@@ -210,14 +218,10 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
 
     @Override
     public void onCourseSelected(CourseListItem cItem) {
-        //Toast.makeText(this, cItem.getTitle(), Toast.LENGTH_SHORT)
-        // .show();
         CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
         coursePreviewFragment.setItem(cItem);
         Fragment fragment;
         fragment = coursePreviewFragment;
-        //fragment.setText(cItem.getTitle(),cItem.getDescription());
-
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -225,8 +229,21 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         setTitle(cItem.getTitle());
-
     }
+    @Override
+    public void onTaskSelected(TaskListItem tItem) {
+        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
+        taskPreviewFragment.setItem(tItem);
+        Fragment fragment = taskPreviewFragment;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        setTitle(tItem.getTitle());
+    }
+
     public static database getDb(){
         return db;
     }

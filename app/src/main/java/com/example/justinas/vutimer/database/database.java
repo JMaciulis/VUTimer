@@ -20,6 +20,7 @@ public class database {
     List<CourseListItem> courseListItemList;
     CourseListItem courseListItemOnPreview;
     List<TaskListItem> taskListItemList;
+    TaskListItem taskListItemOnPreview;
 
     public database(Context context){
         this.context = context;
@@ -91,5 +92,12 @@ public class database {
     }
     public List<TaskListItem> getTaskListItemList() {
         return taskListItemList;
+    }
+
+    public TaskListItem setTaskListItemOnPreview(TaskListItem taskListItem) {
+        return taskListItemOnPreview;
+    }
+    public void deleteTaskItem(TaskListItem tItem){
+        taskListItemList.remove(tItem);
     }
 }

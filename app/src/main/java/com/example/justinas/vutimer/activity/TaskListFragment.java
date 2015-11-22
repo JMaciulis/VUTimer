@@ -13,9 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
-import com.example.justinas.vutimer.adapter.CourseListAdapter;
 import com.example.justinas.vutimer.adapter.TaskListAdapter;
-import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
 
 import java.util.List;
@@ -30,6 +28,12 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        taskListItems = MainActivity.db.getTaskListItemList();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        taskListItems = MainActivity.db.getTaskListItemList();
     }
 
     @Override
@@ -40,7 +44,6 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        taskListItems = MainActivity.db.getTaskListItemList();
         adapter = new TaskListAdapter(getActivity(), taskListItems);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
@@ -60,17 +63,14 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
 
         //mCallback.onCourseSelected(courseListItems.get(position));
 
-        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
-        taskPreviewFragment.setItem(taskListItems.get(position));
-
-        //fragment.setText(cItem.getTitle(),cItem.getDescription());
-
+        MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
+        CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);
+        fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        //labas
+
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(taskListItems.get(position).getTitle());
     }
 

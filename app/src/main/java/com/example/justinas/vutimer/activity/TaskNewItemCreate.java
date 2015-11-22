@@ -1,14 +1,23 @@
 package com.example.justinas.vutimer.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.ListFragment;
+
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.model.CourseListItem;
+import com.example.justinas.vutimer.model.TaskListItem;
 
 
 /**
@@ -19,13 +28,14 @@ import com.example.justinas.vutimer.R;
  * Use the {@link TaskNewItemCreate#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TaskNewItemCreate extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+public class TaskNewItemCreate extends Fragment implements View.OnClickListener{
+
+    Button buttonAdd;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -39,7 +49,6 @@ public class TaskNewItemCreate extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment TaskNewItemCreate.
      */
-    // TODO: Rename and change types and number of parameters
     public static TaskNewItemCreate newInstance(String param1, String param2) {
         TaskNewItemCreate fragment = new TaskNewItemCreate();
         Bundle args = new Bundle();
@@ -66,10 +75,12 @@ public class TaskNewItemCreate extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_task_new_item_create, container, false);
+        View view = inflater.inflate(R.layout.fragment_task_new_item_create, container, false);
+        buttonAdd = (Button)  view.findViewById(R.id.new_course_add_button);
+        buttonAdd.setOnClickListener(this);
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -87,10 +98,40 @@ public class TaskNewItemCreate extends Fragment {
         }
     }
 
+    public void saveNewCourse(View view){
+        EditText editTaskNameText = (EditText) getActivity().findViewById(R.id.task_name_edit);
+        String task_name = editTaskNameText.getText().toString();
+        EditText  editTaskDescrText = (EditText) getActivity().findViewById(R.id.task_description_edit);
+        String task_description = editTaskDescrText.getText().toString();
+        TaskListItem taskListItem = new TaskListItem(task_name,task_description);
+        MainActivity.db.addTaskListItemToList(taskListItem);
+        Toast.makeText(getActivity(), "Task Added", Toast.LENGTH_SHORT).show();
+        goToTaskList();
+    }
+
+    private void goToTaskList() {
+        ListFragment listFragment = new TaskListFragment();
+
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, listFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        saveNewCourse(v);
+        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+
     }
 
     /**
@@ -104,7 +145,6 @@ public class TaskNewItemCreate extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
 
