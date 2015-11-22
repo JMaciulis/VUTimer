@@ -1,8 +1,6 @@
 package com.example.justinas.vutimer.activity;
 
-
 import android.os.Bundle;
-
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -16,69 +14,69 @@ import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.adapter.CourseListAdapter;
+import com.example.justinas.vutimer.adapter.TaskListAdapter;
 import com.example.justinas.vutimer.model.CourseListItem;
+import com.example.justinas.vutimer.model.TaskListItem;
 
 import java.util.List;
 
 
-public class CourseListFragment extends ListFragment implements AdapterView.OnItemClickListener {
-
+public class TaskListFragment extends ListFragment  implements AdapterView.OnItemClickListener {
     OnHeadlineSelectedListener mCallback;
-    CourseListAdapter adapter;
-    private List<CourseListItem> courseListItems;
-
+    TaskListAdapter adapter;
+    private List<TaskListItem> taskListItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        courseListItems = MainActivity.db.getCourseListItemList();
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        courseListItems = MainActivity.db.getCourseListItemList();
-    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceStace){
-        return inflater.inflate(R.layout.course_list_fragment,null,false);
+        return inflater.inflate(R.layout.task_list_fragment,null,false);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        adapter = new CourseListAdapter(getActivity(), courseListItems);
+        taskListItems = MainActivity.db.getTaskListItemList();
+        adapter = new TaskListAdapter(getActivity(), taskListItems);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
 
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.courses_list_toolbar, menu);
+        inflater.inflate(R.menu.task_list_toolbar, menu);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(getActivity(), courseListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
+        Toast.makeText(getActivity(), taskListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
                 .show();
 
 
         //mCallback.onCourseSelected(courseListItems.get(position));
-        MainActivity.db.setCourseListItemOnPreview(courseListItems.get(position));
-        CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
+
+        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
+        taskPreviewFragment.setItem(taskListItems.get(position));
+
+        //fragment.setText(cItem.getTitle(),cItem.getDescription());
+
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
+        fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
+        //labas
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(taskListItems.get(position).getTitle());
     }
 
 
     public interface OnHeadlineSelectedListener {
-        void onCourseSelected(CourseListItem cItem);
+        void onTaskSelected(TaskListItem tItem);
     }
 
     /*
@@ -86,5 +84,4 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
         this.courseListItems = list;
     }
     */
-
 }

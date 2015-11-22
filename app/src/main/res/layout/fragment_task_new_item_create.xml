@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.justinas.vutimer.activity.TaskNewItemCreate">
+
+    <!-- TODO: Update blank fragment layout -->
 
 
     <EditText
@@ -11,12 +13,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:paddingTop="6dp"
         android:layout_toRightOf="@+id/imageView"
         android:layout_toEndOf="@+id/imageView"
         android:autoText="false"
-        android:hint="Course name"
+        android:hint="@string/task_name_new"
         android:background = "@android:color/transparent"/>
     <View
         android:layout_width="match_parent"
@@ -32,12 +34,12 @@
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:id="@+id/course_description_edit"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_below="@+id/c_p_divider1"
         android:layout_alignLeft="@+id/course_name_edit"
         android:layout_alignStart="@+id/course_name_edit"
         android:paddingTop="6dp"
-        android:hint="Course Description"
+        android:hint="@string/task_description_new"
         android:background = "@android:color/transparent"/>
     <View
         android:layout_width="match_parent"
@@ -74,10 +76,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_course_add_button"
+        android:text="@string/add_task_button"
         android:id="@+id/new_course_add_button"
         android:layout_below="@+id/c_p_divider2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="61dp"
         android:onClick="saveNewCourse"/>
+
 </RelativeLayout>

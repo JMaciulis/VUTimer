@@ -2,7 +2,6 @@ package com.example.justinas.vutimer.activity;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.support.annotation.CheckResult;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,13 +21,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.justinas.vutimer.ChronometerClass;
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.database.database;
 import com.example.justinas.vutimer.model.CourseListItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements CourseListFragment.OnHeadlineSelectedListener {

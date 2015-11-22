@@ -34,6 +34,24 @@
         <item>About Us</item>
     </string-array>
 
+    <string-array name="taskNameArr">
+        <item>Home</item>
+        <item>Tutorials</item>
+        <item>My Apps</item>
+        <item>OS Versions</item>
+        <item>Tools</item>
+        <item>About Us</item>
+    </string-array>
+
+    <string-array name="taskDescrArr">
+        <item>Home</item>
+        <item>Tutorials</item>
+        <item>My Apps</item>
+        <item>OS Versions</item>
+        <item>Tools</item>
+        <item>About Us</item>
+    </string-array>
+
     <string-array name="drawerMenu">
         <item>Courses</item>
         <item>Tasks</item>
@@ -49,4 +67,9 @@
     <string name="pause_button">Pause</string>
     <string name="stop_button">Stop</string>
     <string name="settings_delete">Delete</string>
+    <string name="task_name">Task_name</string>
+    <string name="task_description">Description</string>
+    <string name="task_description_new">Task Description</string>
+    <string name="task_name_new">Task name</string>
+    <string name="add_task_button">ADD TASK</string>
 </resources>

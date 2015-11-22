@@ -1,4 +1,4 @@
-package com.example.justinas.vutimer;
+package com.example.justinas.vutimer.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -13,6 +13,8 @@ import android.widget.Chronometer;
 import android.view.View.OnClickListener;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
+
+import com.example.justinas.vutimer.R;
 
 
 public class ChronometerClass extends Fragment implements OnClickListener{

@@ -6,6 +6,7 @@ import com.example.justinas.vutimer.model.CourseListItem;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.model.CourseListItem;
+import com.example.justinas.vutimer.model.TaskListItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +17,15 @@ import java.util.List;
 public class database {
     private Context context;
 
-
     List<CourseListItem> courseListItemList;
     CourseListItem courseListItemOnPreview;
+    List<TaskListItem> taskListItemList;
 
     public database(Context context){
         this.context = context;
         setCourseListItemList();
-
+        setTaskListItemList();
     }
-
 
     public void setCourseListItemList(){
 
@@ -63,5 +63,33 @@ public class database {
     }
     public void deleteCourseItem(CourseListItem cItem){
         courseListItemList.remove(cItem);
+    }
+    
+    
+    //----------TASK----------------
+    private void setTaskListItemList() {
+        List<TaskListItem> list;
+
+        String[] taskNames;
+        String[] taskDescr;
+
+        taskNames = context.getResources().getStringArray(R.array.taskNameArr);
+        taskDescr = context.getResources().getStringArray(R.array.taskDescrArr);
+
+        list = new ArrayList<TaskListItem>();
+
+        for (int i = 0; i < taskNames.length; i++) {
+            TaskListItem items = new TaskListItem(taskNames[i],taskDescr[i]);
+
+            list.add(items);
+        }
+
+        this.taskListItemList = list;
+    }
+    public void addTaskListItemToList(TaskListItem taskListItem){
+        taskListItemList.add(taskListItem);
+    }
+    public List<TaskListItem> getTaskListItemList() {
+        return taskListItemList;
     }
 }
