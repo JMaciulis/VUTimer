@@ -94,7 +94,10 @@ public class database {
         return taskListItemList;
     }
 
-    public TaskListItem setTaskListItemOnPreview(TaskListItem taskListItem) {
+    public void setTaskListItemOnPreview(TaskListItem taskListItem) {
+        taskListItemOnPreview = taskListItem;
+    }
+    public TaskListItem getTaskListItemOnPreview(){
         return taskListItemOnPreview;
     }
     public void deleteTaskItem(TaskListItem tItem){

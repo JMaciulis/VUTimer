@@ -1,4 +1,4 @@
-package com.example.justinas.vutimer.activity;
+package com.example.justinas.vutimer.activity.CourseFragments;
 
 
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.adapter.CourseListAdapter;
 import com.example.justinas.vutimer.model.CourseListItem;
 

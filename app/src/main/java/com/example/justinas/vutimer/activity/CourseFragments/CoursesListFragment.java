@@ -1,8 +1,8 @@
-package com.example.justinas.vutimer.activity;
+package com.example.justinas.vutimer.activity.CourseFragments;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import com.example.justinas.vutimer.R;
 
 /**
- * Created by Lukas on 22/11/2015.
+ * Created by Justinas on 11/6/2015.
  */
-public class TasksListFragment extends Fragment {
-    public TasksListFragment(){
+public class CoursesListFragment extends Fragment{
+    public CoursesListFragment(){
 
     }
     @Override
@@ -22,7 +22,8 @@ public class TasksListFragment extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
-        View rootView = inflater.inflate(R.layout.task_list_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_course_list,container,false);
+
         return rootView;
     }
 

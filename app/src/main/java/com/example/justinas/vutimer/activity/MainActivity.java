@@ -22,12 +22,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.CourseFragments.CourseListFragment;
+import com.example.justinas.vutimer.activity.CourseFragments.CourseNewItemCreate;
+import com.example.justinas.vutimer.activity.CourseFragments.CoursePreviewFragment;
+import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
+import com.example.justinas.vutimer.activity.TaskFragments.TaskNewItemCreate;
+import com.example.justinas.vutimer.activity.TaskFragments.TaskPreviewFragment;
 import com.example.justinas.vutimer.database.database;
 import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
 
 
-public class MainActivity extends AppCompatActivity implements CourseListFragment.OnHeadlineSelectedListener, TaskListFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     public static database db;
@@ -214,37 +220,5 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onCourseSelected(CourseListItem cItem) {
-        CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
-        coursePreviewFragment.setItem(cItem);
-        Fragment fragment;
-        fragment = coursePreviewFragment;
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        setTitle(cItem.getTitle());
-    }
-    @Override
-    public void onTaskSelected(TaskListItem tItem) {
-        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
-        taskPreviewFragment.setItem(tItem);
-        Fragment fragment = taskPreviewFragment;
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        setTitle(tItem.getTitle());
-    }
-
-    public static database getDb(){
-        return db;
     }
 }

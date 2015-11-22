@@ -1,4 +1,4 @@
-package com.example.justinas.vutimer.activity;
+package com.example.justinas.vutimer.activity.TaskFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.MainActivity;
+import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.model.TaskListItem;
 
 /**
@@ -34,6 +36,8 @@ public class TaskPreviewFragment extends Fragment {
 
         TextView txtTaskName = (TextView) view.findViewById(R.id.task_name);
         TextView txtTaskDescription = (TextView) view.findViewById(R.id.task_description);
+
+        tItem = MainActivity.db.getTaskListItemOnPreview();
 
         txtTaskName.setText(tItem.getTitle());
         txtTaskDescription.setText(tItem.getDescription());

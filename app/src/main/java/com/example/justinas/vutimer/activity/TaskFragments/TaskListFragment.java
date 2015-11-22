@@ -1,4 +1,4 @@
-package com.example.justinas.vutimer.activity;
+package com.example.justinas.vutimer.activity.TaskFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.CourseFragments.CoursePreviewFragment;
+import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.adapter.TaskListAdapter;
 import com.example.justinas.vutimer.model.TaskListItem;
 
@@ -20,7 +22,7 @@ import java.util.List;
 
 
 public class TaskListFragment extends ListFragment  implements AdapterView.OnItemClickListener {
-    OnHeadlineSelectedListener mCallback;
+
     TaskListAdapter adapter;
     private List<TaskListItem> taskListItems;
 
@@ -60,28 +62,15 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
         Toast.makeText(getActivity(), taskListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
                 .show();
 
-
-        //mCallback.onCourseSelected(courseListItems.get(position));
-
         MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
-        CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
+        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
+        fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(taskListItems.get(position).getTitle());
     }
 
-
-    public interface OnHeadlineSelectedListener {
-        void onTaskSelected(TaskListItem tItem);
-    }
-
-    /*
-    public void setCourseListItems(List<CourseListItem> list){
-        this.courseListItems = list;
-    }
-    */
 }
