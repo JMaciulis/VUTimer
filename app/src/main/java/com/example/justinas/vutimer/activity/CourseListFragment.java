@@ -72,7 +72,8 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
         fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
+        //labas
+        //((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
     }
 
 
