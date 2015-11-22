@@ -160,6 +160,10 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
                 break;
             case 2:
                 fragment = new ChronometerClass();
+                break;
+            case 3:
+                fragment = new CourseNewItemCreate();
+                break;
             default: break;
         }
         if(!list) {

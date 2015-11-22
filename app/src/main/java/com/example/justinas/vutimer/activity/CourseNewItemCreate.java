@@ -1,13 +1,16 @@
 package com.example.justinas.vutimer.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.view.View.OnClickListener;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.model.CourseListItem;
@@ -20,7 +23,7 @@ import com.example.justinas.vutimer.model.CourseListItem;
  * Use the {@link CourseNewItemCreate#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CourseNewItemCreate extends Fragment {
+public class CourseNewItemCreate extends Fragment implements OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,6 +35,7 @@ public class CourseNewItemCreate extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    Button buttonAdd;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -66,8 +70,13 @@ public class CourseNewItemCreate extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_course_new_item_create, container, false);
+        buttonAdd = (Button)  view.findViewById(R.id.new_course_add_button);
+        buttonAdd.setOnClickListener(this);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_course_new_item_create, container, false);
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,7 +86,7 @@ public class CourseNewItemCreate extends Fragment {
         }
     }
 
-    public void SaveNewCourse(View view){
+    public void saveNewCourse(View view){
         EditText editCourseNameText = (EditText) getActivity().findViewById(R.id.course_name_edit);
         String course_name = editCourseNameText.getText().toString();
         EditText  editCourseDescrText = (EditText) getActivity().findViewById(R.id.course_name_edit);
@@ -90,6 +99,11 @@ public class CourseNewItemCreate extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        saveNewCourse(v);
     }
 
     /**

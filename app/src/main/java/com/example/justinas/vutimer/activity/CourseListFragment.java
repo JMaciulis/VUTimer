@@ -73,7 +73,7 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         //labas
-        //((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
     }
 
 
