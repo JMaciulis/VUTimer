@@ -44,7 +44,7 @@ public class CoursePreviewFragment extends Fragment {
         return view;
     }
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.menu_courses_preview, menu);
     }
     @Override

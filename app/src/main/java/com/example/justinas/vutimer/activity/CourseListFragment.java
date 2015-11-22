@@ -35,9 +35,11 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
 
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.courses_list_toolbar, menu);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceStace){
         return inflater.inflate(R.layout.course_list_fragment,null,false);
@@ -46,11 +48,15 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-
+        courseListItems = MainActivity.db.getCourseListItemList();
         adapter = new CourseListAdapter(getActivity(), courseListItems);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
 
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        inflater.inflate(R.menu.courses_list_toolbar, menu);
     }
 
     @Override
@@ -81,9 +87,10 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
         void onCourseSelected(CourseListItem cItem);
     }
 
-
+    /*
     public void setCourseListItems(List<CourseListItem> list){
         this.courseListItems = list;
     }
+    */
 
 }

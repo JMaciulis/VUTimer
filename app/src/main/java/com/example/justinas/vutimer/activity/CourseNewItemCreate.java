@@ -1,16 +1,19 @@
 package com.example.justinas.vutimer.activity;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.model.CourseListItem;
@@ -93,6 +96,8 @@ public class CourseNewItemCreate extends Fragment implements OnClickListener{
         String course_description = editCourseDescrText.getText().toString();
         CourseListItem courseListItem = new CourseListItem(course_name,course_description);
         MainActivity.db.addCourseListItemToList(courseListItem);
+        Toast.makeText(getActivity(),"Course Added",Toast.LENGTH_SHORT).show();
+        goToCourseList();
     }
 
     @Override
@@ -106,6 +111,14 @@ public class CourseNewItemCreate extends Fragment implements OnClickListener{
         saveNewCourse(v);
     }
 
+    private void goToCourseList(){
+        ListFragment listFragment = new CourseListFragment();
+
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, listFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

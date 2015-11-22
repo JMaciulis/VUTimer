@@ -7,7 +7,6 @@
     <EditText
         android:layout_width="320dp"
         android:layout_height="32dp"
-        android:text="Name"
         android:id="@+id/course_name_edit"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -15,7 +14,10 @@
         android:textSize="16dp"
         android:paddingTop="6dp"
         android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_toEndOf="@+id/imageView"
+        android:autoText="false"
+        android:hint="Course name"
+        android:background = "@android:color/transparent"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -29,13 +31,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:text="Description"
         android:id="@+id/course_description_edit"
         android:textSize="16dp"
         android:layout_below="@+id/c_p_divider1"
         android:layout_alignLeft="@+id/course_name_edit"
         android:layout_alignStart="@+id/course_name_edit"
-        android:paddingTop="6dp" />
+        android:paddingTop="6dp"
+        android:hint="Course Description"
+        android:background = "@android:color/transparent"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -118,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
             case R.id.action_edit:
                 Toast.makeText(this,"Main_edit",Toast.LENGTH_SHORT).show();
                 return true;
+            case R.id.action_add_new_course_item:
+                displayView(11);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -133,10 +136,9 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
     /** Swaps fragments in the main content view */
     private void selectItem(int position) {
         // Create a new fragment and specify the planet to show based on position
-            displayView(position);
+        displayView(position);
             // Highlight the selected item, update the title, and close the drawer
-            mDrawerList.setItemChecked(position, true);
-            setTitle(drawerMenu[position]);
+        mDrawerList.setItemChecked(position, true);
             mDrawerLayout.closeDrawer(mDrawerList);
 
     }
@@ -154,14 +156,12 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
                 break;
             case 1:
                 list = true;
-                CourseListFragment CLF = new CourseListFragment();
-                CLF.setCourseListItems(db.getCourseListItemList());
-                listFragment = CLF;
+                listFragment = new CourseListFragment();
                 break;
             case 2:
                 fragment = new ChronometerClass();
                 break;
-            case 3:
+            case 11:
                 fragment = new CourseNewItemCreate();
                 break;
             default: break;
@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
 
             }
         }
+        setTitle(title);
     }
     @Override
     public void setTitle(CharSequence title) {
@@ -216,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
         // .show();
         CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
         coursePreviewFragment.setItem(cItem);
-        Fragment fragment = null;
+        Fragment fragment;
         fragment = coursePreviewFragment;
         //fragment.setText(cItem.getTitle(),cItem.getDescription());
 
