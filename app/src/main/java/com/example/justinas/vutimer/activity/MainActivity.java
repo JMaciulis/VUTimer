@@ -1,5 +1,6 @@
 package com.example.justinas.vutimer.activity;
 
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.support.annotation.CheckResult;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements CourseListFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT);
         db = new database(this);
         setContentView(R.layout.activity_main);
 

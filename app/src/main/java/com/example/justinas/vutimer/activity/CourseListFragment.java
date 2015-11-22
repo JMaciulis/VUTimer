@@ -38,8 +38,13 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        courseListItems = MainActivity.db.getCourseListItemList();
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        courseListItems = MainActivity.db.getCourseListItemList();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceStace){
         return inflater.inflate(R.layout.course_list_fragment,null,false);
@@ -48,7 +53,6 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        courseListItems = MainActivity.db.getCourseListItemList();
         adapter = new CourseListAdapter(getActivity(), courseListItems);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
@@ -67,18 +71,14 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
 
 
         //mCallback.onCourseSelected(courseListItems.get(position));
-
+        MainActivity.db.setCourseListItemOnPreview(courseListItems.get(position));
         CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
-        coursePreviewFragment.setItem(courseListItems.get(position));
-
-        //fragment.setText(cItem.getTitle(),cItem.getDescription());
-
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        //labas
+
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(courseListItems.get(position).getTitle());
     }
 

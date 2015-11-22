@@ -18,6 +18,7 @@ public class database {
 
 
     List<CourseListItem> courseListItemList;
+    CourseListItem courseListItemOnPreview;
 
     public database(Context context){
         this.context = context;
@@ -51,5 +52,16 @@ public class database {
     }
     public List<CourseListItem> getCourseListItemList(){
         return courseListItemList;
+    }
+
+    public void setCourseListItemOnPreview(CourseListItem courseListItemOnPreview) {
+        this.courseListItemOnPreview = courseListItemOnPreview;
+    }
+
+    public CourseListItem getCourseListItemOnPreview() {
+        return courseListItemOnPreview;
+    }
+    public void deleteCourseItem(CourseListItem cItem){
+        courseListItemList.remove(cItem);
     }
 }
