@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/coursesImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_pages"
+        />
+    <TextView
+        android:id="@+id/coursesTextTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Course_name"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/coursesImageView"
+        android:layout_toEndOf="@+id/coursesImageView"
+        android:layout_marginLeft="16dp" />
+    <TextView
+        android:id="@+id/coursesTextBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text ="Description"
+        android:layout_below="@+id/coursesTextTop"
+        android:layout_alignLeft="@+id/coursesTextTop"
+        android:layout_alignStart="@+id/coursesTextTop" />
+
+</RelativeLayout>

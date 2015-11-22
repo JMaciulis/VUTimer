@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">VUTimer</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="nav_item_courses">Courses</string>
+    <string name="nav_item_tasks">Tasks</string>
+    <string name="nav_item_timetable">Timetable</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_courses</item>
+        <item>@string/nav_item_tasks</item>
+        <item>@string/nav_item_timetable</item>
+    </string-array>
+
+    <string name="title_courses">Courses</string>
+    <string name="title_tasks">Tasks</string>
+    <string name="title_timetable">Timetable</string>
+    <string-array name="courseNameArr">
+        <item>Home</item>
+        <item>Tutorials</item>
+        <item>My Apps</item>
+        <item>OS Versions</item>
+        <item>Tools</item>
+        <item>About Us</item>
+    </string-array>
+
+    <string-array name="courseDescrArr">
+        <item>Home</item>
+        <item>Tutorials</item>
+        <item>My Apps</item>
+        <item>OS Versions</item>
+        <item>Tools</item>
+        <item>About Us</item>
+    </string-array>
+
+    <string-array name="drawerMenu">
+        <item>Courses</item>
+        <item>Tasks</item>
+        <item>Timetable</item>
+    </string-array>
+</resources>
