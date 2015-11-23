@@ -25,6 +25,7 @@ import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.CourseFragments.CourseListFragment;
 import com.example.justinas.vutimer.activity.CourseFragments.CourseNewItemCreate;
 import com.example.justinas.vutimer.activity.CourseFragments.CoursePreviewFragment;
+import com.example.justinas.vutimer.activity.CourseFragments.CoursesListFragment;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskNewItemCreate;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskPreviewFragment;
@@ -159,15 +160,15 @@ public class MainActivity extends AppCompatActivity {
         switch(position){
             case 0:
                 list = false;
-                fragment = new ChronometerClass();
+                fragment = new CoursesListFragment();
                 break;
             case 1:
                 list = true;
                 listFragment = new CourseListFragment();
                 break;
             case 2:
-                list = true;
-                listFragment = new TaskListFragment();
+                list = false;
+                fragment = new TaskListFragment();
                 break;
             case 11:
                 fragment = new CourseNewItemCreate();

@@ -67,5 +67,38 @@
         android:layout_above="@+id/c_p_divider2"
         android:layout_toLeftOf="@+id/c_p_divider1"
         android:layout_toStartOf="@+id/c_p_divider1" />
-    
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer2"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/c_p_divider2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/startButton"
+        android:layout_below="@+id/chronometer2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pause"
+        android:id="@+id/pauseButton"
+        android:layout_below="@+id/startButton"
+        android:layout_alignLeft="@+id/startButton"
+        android:layout_alignStart="@+id/startButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:id="@+id/stopButton"
+        android:layout_below="@+id/pauseButton"
+        android:layout_alignLeft="@+id/startButton" />
+
 </RelativeLayout>

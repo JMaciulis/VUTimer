@@ -24,6 +24,9 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     Chronometer chronometer;
     long time = 0;
 
+    public long getTime(){
+        return this.time;
+    }
 
     private OnFragmentInteractionListener mListener;
 
@@ -81,8 +84,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 chronometer.stop();
                 break;
             case R.id.stopButton:
-                time = chronometer.getBase()-SystemClock.elapsedRealtime();
-                Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
+                time = 0;
                 chronometer.stop();
                 break;
         }
