@@ -112,12 +112,13 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 if (minute > 59){
                     hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24 + minute / 60;
                 }
-                hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24;
+                else {
+                    hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24;
+                }
 
-                //String timeChronometer = String.format(tItem.getDescription()+ " Timer %02d:%02d:%02d", hour, minute, second);
+
                 long[] timeObj = {time,second,minute,hour};
                 tItem.addDeltaTime(timeObj);
-                //txtTaskTime.setText(tItem.getTimeString());
                 Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
                 goToTaskPreview();
                 break;
@@ -126,8 +127,6 @@ public class ChronometerClass extends Fragment implements OnClickListener{
 
     public void setTask(TaskListItem tItem){
         this.tItem = tItem;
-        long[] setup = tItem.getTime();
-        time = setup[0];
     }
 
     /**

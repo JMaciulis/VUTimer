@@ -60,9 +60,9 @@ public class TaskListItem {
         String time = "";
         if(hour != 0) {
             if (hour < 10)
-                time += "0" + hour + ":";
+                time += "0" + hour + "h";
             else
-                time += hour + ":";
+                time += hour + "h";
         }
         if(minute < 10)
             time += "0"+minute+"m";
@@ -81,7 +81,7 @@ public class TaskListItem {
         hour = time[3];
     }
     public void addDeltaTime(long[] time){
-        this.time = time[0]; // ne += nes siuntinejam pilna
+        this.time += time[0];
         second += time[1];
         minute += time[2];
         hour += time[3];
