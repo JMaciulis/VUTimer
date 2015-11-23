@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,12 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.view.View.OnClickListener;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.TaskFragments.TaskPreviewFragment;
+import com.example.justinas.vutimer.model.TaskListItem;
 
 
 public class ChronometerClass extends Fragment implements OnClickListener{
@@ -22,7 +26,12 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     Button startButton, pauseButton, stopButton;
     Chronometer chronometer;
+
     long time = 0;
+    long second = 0;
+    long minute = 0;
+    long hour = 0;
+    TaskListItem tItem;
 
     public long getTime(){
         return this.time;
@@ -45,6 +54,11 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chronometer, container, false);
+
+        //Added 11/23 JM
+        TextView txtTaskName = (TextView) view.findViewById(R.id.taskName);
+        txtTaskName.setText(tItem.getTitle());
+
         startButton = (Button) view.findViewById(R.id.startButton);
         pauseButton = (Button) view.findViewById(R.id.pauseButton);
         stopButton = (Button) view.findViewById(R.id.stopButton);
@@ -74,6 +88,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.startButton:
+
                 chronometer.setBase(SystemClock.elapsedRealtime() + time);
                 Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
                 chronometer.start();
@@ -84,10 +99,39 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 chronometer.stop();
                 break;
             case R.id.stopButton:
-                time = 0;
                 chronometer.stop();
+                long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                second = second +(elapsedMillis / 1000) % 60;
+                if (second > 59){
+                    minute = minute +(elapsedMillis / (1000 * 60)) % 60 + (second/60);
+                    second = second % 60;
+                }
+                else{
+                    minute = minute +(elapsedMillis / (1000 * 60)) % 60;
+                }
+                if (minute > 59){
+                    hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24 + minute / 60;
+                }
+                hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24;
+
+                //String timeChronometer = String.format(tItem.getDescription()+ " Timer %02d:%02d:%02d", hour, minute, second);
+                long[] timeObj = {time,second,minute,hour};
+                tItem.addDeltaTime(timeObj);
+                //txtTaskTime.setText(tItem.getTimeString());
+                time = 0;
+                second = 0;
+                minute = 0;
+                hour = 0;
+                Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
+                goToTaskPreview();
                 break;
         }
+    }
+
+    public void setTask(TaskListItem tItem){
+        this.tItem = tItem;
+        long[] setup = tItem.getTime();
+        time = setup[0];
     }
 
     /**
@@ -103,6 +147,15 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+    private void goToTaskPreview(){
+        MainActivity.db.setTaskListItemOnPreview(tItem);
+        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
+
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 }

@@ -36,4 +36,25 @@
         android:id="@+id/stopButton"
         android:layout_below="@+id/pauseButton"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task"
+        android:id="@+id/taskCaption"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task name"
+        android:id="@+id/taskName"
+        android:layout_below="@+id/taskCaption"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 </RelativeLayout>
