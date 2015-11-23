@@ -20,14 +20,15 @@ import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.model.TaskListItem;
 
-/**
- * Created by Lukas on 22/11/2015.
- */
+
 public class TaskPreviewFragment extends Fragment {
 
     private TaskListItem tItem;
     Button startButton, pauseButton, stopButton;
     long time = 0;
+    long second = 0;
+    long minute = 0;
+    long hour = 0;
     Chronometer chronometer;
 
     @Override
@@ -73,11 +74,20 @@ public class TaskPreviewFragment extends Fragment {
             public void onClick(View v) {
                 chronometer.stop();
                 long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
-                long second = (elapsedMillis / 1000) % 60;
-                long minute = (elapsedMillis / (1000 * 60)) % 60;
-                long hour = (elapsedMillis / (1000 * 60 * 60)) % 24;
+                second = second +(elapsedMillis / 1000) % 60;
+                if (second > 59){
+                    minute = minute +(elapsedMillis / (1000 * 60)) % 60 + (second/60);
+                    second = second % 60;
+                }
+                else{
+                    minute = minute +(elapsedMillis / (1000 * 60)) % 60;
+                }
+                if (minute > 59){
+                    hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24 + minute / 60;
+                }
+                hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24;
 
-                String timeChronometer = String.format("%02d:%02d:%02d", hour, minute, second);
+                String timeChronometer = String.format(tItem.getDescription()+ " Timer %02d:%02d:%02d", hour, minute, second);
                 txtTaskDescription.setText(timeChronometer);
                 time = 0;
                 Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
