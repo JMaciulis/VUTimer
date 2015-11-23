@@ -118,10 +118,6 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 long[] timeObj = {time,second,minute,hour};
                 tItem.addDeltaTime(timeObj);
                 //txtTaskTime.setText(tItem.getTimeString());
-                time = 0;
-                second = 0;
-                minute = 0;
-                hour = 0;
                 Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
                 goToTaskPreview();
                 break;

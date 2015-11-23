@@ -82,8 +82,8 @@ public class TaskListItem {
     }
     public void addDeltaTime(long[] time){
         this.time = time[0]; // ne += nes siuntinejam pilna
-        second += time[0];
-        minute += time[1];
-        hour += time[2];
+        second += time[1];
+        minute += time[2];
+        hour += time[3];
     }
 }
