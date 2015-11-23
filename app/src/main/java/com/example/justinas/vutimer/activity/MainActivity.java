@@ -2,6 +2,7 @@ package com.example.justinas.vutimer.activity;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -34,7 +35,8 @@ import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements TaskNewItemCreate.OnFragmentInteractionListener {
     private Toolbar toolbar;
 
     public static database db;
@@ -132,6 +134,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
