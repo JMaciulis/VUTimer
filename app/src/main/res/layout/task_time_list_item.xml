@@ -31,5 +31,6 @@
         android:layout_below="@+id/taskName"
         android:layout_toRightOf="@+id/taskImageView"
         android:layout_toEndOf="@+id/taskImageView"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        />
 </RelativeLayout>
