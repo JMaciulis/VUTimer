@@ -68,8 +68,12 @@
     <string name="stop_button">Stop</string>
     <string name="settings_delete">Delete</string>
     <string name="task_name">Task_name</string>
+    <string name="task_time_name">Task_Time_name</string>
     <string name="task_description">Description</string>
     <string name="task_description_new">Task Description</string>
+    <string name="task_time_description_new">Task Time Description</string>
+    <string name="task_time_description">Description</string>
     <string name="task_name_new">Task name</string>
+    <string name="task_time_name_new">Task Time name</string>
     <string name="add_task_button">ADD TASK</string>
 </resources>

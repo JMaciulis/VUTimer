@@ -30,6 +30,7 @@ import com.example.justinas.vutimer.activity.CourseFragments.CoursesListFragment
 import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskNewItemCreate;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskPreviewFragment;
+import com.example.justinas.vutimer.activity.TaskTimeFragments.TaskTimeListFragment;
 import com.example.justinas.vutimer.database.database;
 import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
