@@ -7,7 +7,7 @@
         android:id="@+id/action_edit_task"
         android:orderInCategory="200"
         android:title="Search"
-        android:icon="@drawable/ic_communities"
+        android:icon="@drawable/ic_chronometro"
         app:showAsAction="ifRoom"
         ></item>
 </menu>
