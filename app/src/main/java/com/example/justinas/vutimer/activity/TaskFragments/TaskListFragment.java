@@ -22,7 +22,7 @@ import java.util.List;
 
 
 public class TaskListFragment extends ListFragment  implements AdapterView.OnItemClickListener {
-
+    public TaskPreviewFragment taskPreviewFragment;
     TaskListAdapter adapter;
     private List<TaskListItem> taskListItems;
 
@@ -63,7 +63,7 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
                 .show();
 
         MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
-        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
+        taskPreviewFragment = new TaskPreviewFragment();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);

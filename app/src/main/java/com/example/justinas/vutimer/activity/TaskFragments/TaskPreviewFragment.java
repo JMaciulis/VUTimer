@@ -23,7 +23,7 @@ import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.model.TaskListItem;
 
 
-public class TaskPreviewFragment extends Fragment {
+public class TaskPreviewFragment extends Fragment{
 
     private TaskListItem tItem;
     Button startButton, pauseButton, stopButton;

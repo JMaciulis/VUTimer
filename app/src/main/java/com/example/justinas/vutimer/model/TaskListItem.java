@@ -83,7 +83,17 @@ public class TaskListItem {
     public void addDeltaTime(long[] time){
         this.time += time[0];
         second += time[1];
-        minute += time[2];
-        hour += time[3];
+        if(second > 59){
+            minute += time[2] + second/60;
+            second = second%60;
+        }else {
+            minute += time[2];
+        }
+        if (minute > 59){
+            hour += time[3] + minute/60;
+            minute = minute %60;
+        }else {
+            hour += time[3];
+        }
     }
 }
