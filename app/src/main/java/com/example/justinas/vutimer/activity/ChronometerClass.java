@@ -2,6 +2,7 @@ package com.example.justinas.vutimer.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -26,6 +27,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     Button startButton, pauseButton, stopButton;
     Chronometer chronometer;
+
 
     long time = 0;
     long second = 0;
@@ -58,11 +60,13 @@ public class ChronometerClass extends Fragment implements OnClickListener{
         //Added 11/23 JM
         TextView txtTaskName = (TextView) view.findViewById(R.id.taskName);
         txtTaskName.setText(tItem.getTitle());
-
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "DS-DIGII.TTF");
         startButton = (Button) view.findViewById(R.id.startButton);
         pauseButton = (Button) view.findViewById(R.id.pauseButton);
         stopButton = (Button) view.findViewById(R.id.stopButton);
         chronometer = (Chronometer) view.findViewById(R.id.chronometer);
+        chronometer.setTypeface(font, Typeface.NORMAL);
+        chronometer.setTextSize(120);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);

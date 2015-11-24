@@ -7,10 +7,12 @@
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:typeface="serif"
         android:id="@+id/chronometer"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="178dp" />
+        android:layout_marginTop="178dp"
+        android:textColor="#e43083e9" />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,4 +59,5 @@
         android:layout_centerHorizontal="true"
         android:textSize="24dp"
         android:textStyle="bold" />
+
 </RelativeLayout>
