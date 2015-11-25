@@ -97,7 +97,14 @@ public class database {
         taskListItemList.add(taskListItem);
     }
     public List<TaskListItem> getTaskListItemList() {
-        return taskListItemList;
+        List<TaskListItem> list = new ArrayList<TaskListItem>();
+        for(CourseListItem c: courseListItemList){
+            for(int i = 0; i < c.getTasks().size(); i++){
+                list.add(c.getTasks().get(i));
+            }
+        }
+        return list;
+        //return taskListItemList;
     }
     public void setTaskListItemOnPreview(TaskListItem taskListItem) {
         taskListItemOnPreview = taskListItem;

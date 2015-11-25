@@ -16,6 +16,7 @@ import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.CourseFragments.CoursePreviewFragment;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.adapter.TaskListAdapter;
+import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
 
 import java.util.List;
