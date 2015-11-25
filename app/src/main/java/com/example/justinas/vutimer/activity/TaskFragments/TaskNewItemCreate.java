@@ -126,7 +126,7 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener,
     private void goToTaskList() {
         TaskListFragment listFragment = new TaskListFragment();
         listFragment.showAll(true);
-        //fix
+        //fixdasdasdasd
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_body, listFragment);
         fragmentTransaction.addToBackStack(null);
