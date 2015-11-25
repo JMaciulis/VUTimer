@@ -74,7 +74,7 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
         Toast.makeText(getActivity(), taskListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
                 .show();
 
-        MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
+        MainActivity.db.setTaskListItemOnPreview(MainActivity.db.findCourseItem(filter).getTasks().get(position));
         taskPreviewFragment = new TaskPreviewFragment();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
