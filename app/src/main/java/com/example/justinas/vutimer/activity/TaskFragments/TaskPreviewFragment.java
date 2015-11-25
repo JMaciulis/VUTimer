@@ -26,12 +26,6 @@ import com.example.justinas.vutimer.model.TaskListItem;
 public class TaskPreviewFragment extends Fragment{
 
     private TaskListItem tItem;
-    Button startButton, pauseButton, stopButton;
-    long time = 0;
-    long second = 0;
-    long minute = 0;
-    long hour = 0;
-    Chronometer chronometer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,10 +36,6 @@ public class TaskPreviewFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceStace){
         View view = inflater.inflate(R.layout.task_item_preview,null,false);
-        //startButton = (Button) view.findViewById(R.id.startButton);
-        //pauseButton = (Button) view.findViewById(R.id.pauseButton);
-        //stopButton = (Button) view.findViewById(R.id.stopButton);
-        //chronometer = (Chronometer) view.findViewById(R.id.chronometer2);
 
         TextView txtTaskName = (TextView) view.findViewById(R.id.task_name);
         final TextView txtTaskDescription = (TextView) view.findViewById(R.id.task_description);
@@ -82,6 +72,7 @@ public class TaskPreviewFragment extends Fragment{
             case R.id.action_delete:
                 Toast.makeText(getActivity(),"Deleted",Toast.LENGTH_SHORT);
                 MainActivity.db.deleteTaskItem(tItem);
+                MainActivity.db.findCourseItem(tItem.getParentCourse()).deleteTask(tItem);
                 goToTaskList();
                 return true;
         }
@@ -98,8 +89,8 @@ public class TaskPreviewFragment extends Fragment{
 
 
     private void goToTaskList(){
-        ListFragment listFragment = new TaskListFragment();
-
+        TaskListFragment listFragment = new TaskListFragment();
+        listFragment.setfilter(tItem.getParentCourse());
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_body, listFragment);
         fragmentTransaction.addToBackStack(null);

@@ -17,9 +17,7 @@ public class CourseListItem {
         this.title = title;
         this.description = description;
         this.tasks = new ArrayList<TaskListItem>();
-        //TaskListItem i = new TaskListItem("sudas","sudas","Home");
-        //tasks.add(i);
-        //this.icon = icon;
+
 
     }
 
@@ -53,6 +51,9 @@ public class CourseListItem {
 
     public void addTask(TaskListItem item){
         tasks.add(item);
+    }
+    public void deleteTask(TaskListItem item){
+        tasks.remove(item);
     }
     public String getTaskCount(){
         return ""+tasks.size();
