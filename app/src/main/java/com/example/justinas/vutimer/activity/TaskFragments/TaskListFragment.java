@@ -27,6 +27,7 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
     TaskListAdapter adapter;
     List<TaskListItem> taskListItems;
     String filter = "";
+    boolean showAll = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,20 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
 
     }
     private void setupTaskListItems(){
+        /*
         if (filter != "") {
             taskListItems = MainActivity.db.findCourseItem(filter).getTasks();
         }else {
             taskListItems = MainActivity.db.getTaskListItemList();
         }
         filter ="";
-
+        */
+        if(showAll){
+            taskListItems = MainActivity.db.getTaskListItemList();
+        }else{
+            taskListItems = MainActivity.db.getCourseListItemOnPreview().getTasks();
+        }
+        showAll = false;
     }
     @Override
     public void onResume() {
@@ -88,6 +96,9 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
 
     public void setfilter(String courseTitle){
         this.filter = courseTitle;
+    }
+    public void showAll(boolean value){
+        showAll = value;
     }
 
 }

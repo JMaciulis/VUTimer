@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.CourseDetails;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.adapter.CourseListAdapter;
 import com.example.justinas.vutimer.model.CourseListItem;
@@ -66,10 +67,10 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
 
         //mCallback.onCourseSelected(courseListItems.get(position));
         MainActivity.db.setCourseListItemOnPreview(courseListItems.get(position));
-        CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
-
+        //CoursePreviewFragment coursePreviewFragment = new CoursePreviewFragment();
+        CourseDetails cdl = new CourseDetails();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, coursePreviewFragment);
+        fragmentTransaction.replace(R.id.container_body, cdl);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 

@@ -174,7 +174,9 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
                 break;
             case 2:
                 list = false;
-                fragment = new TaskListFragment();
+                TaskListFragment tlf = new TaskListFragment();
+                tlf.showAll(true);
+                fragment = tlf;
                 break;
             case 3:
                 fragment = new CourseDetails();
