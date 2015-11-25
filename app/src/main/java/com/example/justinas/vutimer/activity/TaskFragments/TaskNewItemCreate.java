@@ -75,7 +75,7 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        int spinnerPosition = 0;
         View view = inflater.inflate(R.layout.fragment_task_new_item_create, container, false);
         // Inflate the layout for this fragment
         spinner = (Spinner) view.findViewById(R.id.course_spinner);
@@ -86,8 +86,14 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener,
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        if(MainActivity.db.getCourseListItemOnPreview() != null) {
+            String myString = MainActivity.db.getCourseListItemOnPreview().getTitle();
+            spinnerPosition = adapter.getPosition(myString);
+            spinner.setSelection(spinnerPosition);
+        }
 
+        spinner.setAdapter(adapter);
+        spinner.setSelection(spinnerPosition);
         buttonAdd = (Button)  view.findViewById(R.id.new_course_add_button);
         buttonAdd.setOnClickListener(this);
         return view;
