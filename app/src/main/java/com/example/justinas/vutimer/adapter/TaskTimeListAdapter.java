@@ -46,16 +46,16 @@ public class TaskTimeListAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.course_list_item,null);
+            convertView = inflater.inflate(R.layout.task_time_list_item,null);
         }
 
-        TextView txtCourseName = (TextView) convertView.findViewById(R.id.coursesTextTop);
-        TextView txtCourseDescription = (TextView) convertView.findViewById(R.id.coursesTextBottom);
+        TextView txtTaskTime = (TextView) convertView.findViewById(R.id.taskTime);
+        TextView txtTaskDescription = (TextView) convertView.findViewById(R.id.taskName);
 
         TaskTimeListItem pos = taskTimeListItem.get(position);
 
-        txtCourseName.setText(pos.getTitle());
-        txtCourseDescription.setText(pos.getDescription());
+        txtTaskTime.setText(pos.getTimeString());
+        txtTaskDescription.setText(pos.getTitle());
 
         return convertView;
     }

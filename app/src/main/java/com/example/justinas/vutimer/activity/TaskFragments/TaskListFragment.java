@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.CourseFragments.CoursePreviewFragment;
 import com.example.justinas.vutimer.activity.MainActivity;
+import com.example.justinas.vutimer.activity.TaskDetails;
 import com.example.justinas.vutimer.adapter.TaskListAdapter;
 import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
@@ -23,7 +24,7 @@ import java.util.List;
 
 
 public class TaskListFragment extends ListFragment  implements AdapterView.OnItemClickListener {
-    public TaskPreviewFragment taskPreviewFragment;
+
     TaskListAdapter adapter;
     List<TaskListItem> taskListItems;
     String filter = "";
@@ -84,10 +85,10 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
                 .show();
 
         MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
-        taskPreviewFragment = new TaskPreviewFragment();
+        TaskDetails taskDetails = new TaskDetails();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);
+        fragmentTransaction.replace(R.id.container_body, taskDetails);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 

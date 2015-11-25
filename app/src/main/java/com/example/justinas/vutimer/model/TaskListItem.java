@@ -1,5 +1,8 @@
 package com.example.justinas.vutimer.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Lukas on 22/11/2015.
  */
@@ -8,19 +11,16 @@ public class TaskListItem {
     private String description;
     private String parentCourse;
 
-    long time;
-    long second;
-    long minute;
-    long hour;
+    List<TaskTimeListItem> timeList;
+
     private int icon;
 
     public TaskListItem(String title,String description,String parentCourse) {
         this.title = title;
         this.description = description;
         this.parentCourse = parentCourse;
-        second = 0;
-        minute = 0;
-        hour = 0;
+
+        timeList = new ArrayList<TaskTimeListItem>();
 
     }
     public void setParentCourse(String parentCourse){
@@ -32,7 +32,13 @@ public class TaskListItem {
     public String getTitle() {
         return title;
     }
-
+    public void addTime(long[] time){
+        TaskTimeListItem item = new TaskTimeListItem(time);
+        timeList.add(item);
+    }
+    public List<TaskTimeListItem> getTimeArr(){
+        return timeList;
+    }
     public String getDescription(){
         return description;
     }
@@ -53,11 +59,8 @@ public class TaskListItem {
         this.icon = icon;
     }
 
-    public long[] getTime(){
-        long[] time = {this.time,second,minute,hour};
-        return time;
-    }
-    public String getTimeString(){
+
+    public String getTimeString(long hour, long minute, long second){
         String time = "";
         if(hour != 0) {
             if (hour < 10)
@@ -75,26 +78,33 @@ public class TaskListItem {
             time += second+"s";
         return time;
     }
-    public void setTime(long[] time){
-        this.time = time[0];
-        second = time[1];
-        minute = time[2];
-        hour = time[3];
-    }
-    public void addDeltaTime(long[] time){
-        this.time += time[0];
-        second += time[1];
+
+
+    public String getTime(){
+        long hour   = 0;
+        long minute = 0;
+        long second = 0;
+        long[] time = {0,0,0};
+        for(TaskTimeListItem t: timeList){
+            long[] tmp = t.getTime();
+            time[0] += tmp[0];
+            time[1] += tmp[1];
+            time[2] += tmp[2];
+
+        }
+        second += time[0];
         if(second > 59){
-            minute += time[2] + second/60;
+            minute += time[1] + second/60;
             second = second%60;
         }else {
-            minute += time[2];
+            minute += time[1];
         }
         if (minute > 59){
-            hour += time[3] + minute/60;
+            hour += time[2] + minute/60;
             minute = minute %60;
         }else {
-            hour += time[3];
+            hour += time[2];
         }
+        return getTimeString(hour,minute,second);
     }
 }

@@ -49,6 +49,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        tItem = MainActivity.db.getTaskListItemOnPreview();
 
     }
 
@@ -119,8 +120,9 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24;
 
                 //String timeChronometer = String.format(tItem.getDescription()+ " Timer %02d:%02d:%02d", hour, minute, second);
-                long[] timeObj = {time,second,minute,hour};
-                tItem.addDeltaTime(timeObj);
+                long[] timeObj = {second,minute,hour};
+                //tItem.addDeltaTime(timeObj);
+                tItem.addTime(timeObj);
                 //txtTaskTime.setText(tItem.getTimeString());
                 Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
                 goToTaskPreview();
@@ -128,11 +130,6 @@ public class ChronometerClass extends Fragment implements OnClickListener{
         }
     }
 
-    public void setTask(TaskListItem tItem){
-        this.tItem = tItem;
-        long[] setup = tItem.getTime();
-        time = setup[0];
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -149,11 +146,11 @@ public class ChronometerClass extends Fragment implements OnClickListener{
         public void onFragmentInteraction(Uri uri);
     }
     private void goToTaskPreview(){
-        MainActivity.db.setTaskListItemOnPreview(tItem);
-        TaskPreviewFragment taskPreviewFragment = new TaskPreviewFragment();
+        //MainActivity.db.setTaskListItemOnPreview(tItem);
+        TaskDetails taskDetails = new TaskDetails();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, taskPreviewFragment);
+        fragmentTransaction.replace(R.id.container_body, taskDetails);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

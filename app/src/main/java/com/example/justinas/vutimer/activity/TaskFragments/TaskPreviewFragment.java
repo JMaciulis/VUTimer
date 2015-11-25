@@ -47,7 +47,7 @@ public class TaskPreviewFragment extends Fragment{
 
         txtTaskName.setText(tItem.getTitle());
         txtTaskDescription.setText(tItem.getDescription());
-        txtTaskTime.setText(tItem.getTimeString());
+        txtTaskTime.setText(tItem.getTime());
         txtTaskParent.setText(tItem.getParentCourse());
 
         return view;
@@ -62,7 +62,6 @@ public class TaskPreviewFragment extends Fragment{
         switch(id){
             case R.id.action_edit_task:
                 ChronometerClass ch = new ChronometerClass();
-                ch.setTask(tItem);
                 Fragment fragment = ch;
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container_body, fragment);

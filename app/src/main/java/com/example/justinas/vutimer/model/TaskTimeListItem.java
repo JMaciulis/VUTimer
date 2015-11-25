@@ -1,13 +1,15 @@
 package com.example.justinas.vutimer.model;
 
+import com.example.justinas.vutimer.activity.MainActivity;
+
 import java.util.List;
 
 /**
  * Created by Lukas on 22/11/2015.
  */
 public class TaskTimeListItem {
-    private String title;
-    private String description;
+    private String title ="";
+    private String description ="";
     private List<TaskTimeListItem> timeList;
 
     long time;
@@ -16,12 +18,11 @@ public class TaskTimeListItem {
     long hour;
     private int icon;
 
-    public TaskTimeListItem(String title,String description) {
-        this.title = title;
-        this.description = description;
-        second = 0;
-        minute = 0;
-        hour = 0;
+    public TaskTimeListItem(long[] time) {
+        title = MainActivity.db.getTaskListItemOnPreview().getTitle();
+        second = time[0];
+        minute = time[1];
+        hour = time[2];
 
     }
 
@@ -50,7 +51,7 @@ public class TaskTimeListItem {
     }
 
     public long[] getTime(){
-        long[] time = {this.time,second,minute,hour};
+        long[] time = {second,minute,hour};
         return time;
     }
     public String getTimeString(){
@@ -71,26 +72,5 @@ public class TaskTimeListItem {
             time += second+"s";
         return time;
     }
-    public void setTime(long[] time){
-        this.time = time[0];
-        second = time[1];
-        minute = time[2];
-        hour = time[3];
-    }
-    public void addDeltaTime(long[] time){
-        this.time += time[0];
-        second += time[1];
-        if(second > 59){
-            minute += time[2] + second/60;
-            second = second%60;
-        }else {
-            minute += time[2];
-        }
-        if (minute > 59){
-            hour += time[3] + minute/60;
-            minute = minute %60;
-        }else {
-            hour += time[3];
-        }
-    }
+
 }
