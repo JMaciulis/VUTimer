@@ -1,12 +1,14 @@
 package com.example.justinas.vutimer.model;
 
+import java.util.List;
+
 /**
  * Created by Lukas on 22/11/2015.
  */
 public class TaskTimeListItem {
     private String title;
     private String description;
-    private String parentCourse;
+    private List<TaskTimeListItem> timeList;
 
     long time;
     long second;
@@ -22,12 +24,7 @@ public class TaskTimeListItem {
         hour = 0;
 
     }
-    public void setParentCourse(String parentCourse){
-        this.parentCourse = parentCourse;
-    }
-    public String getParentCourse(){
-        return parentCourse;
-    }
+
     public String getTitle() {
         return title;
     }
