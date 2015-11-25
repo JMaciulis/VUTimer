@@ -40,13 +40,13 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
         }else {
             taskListItems = MainActivity.db.getTaskListItemList();
         }
-
+        filter ="";
 
     }
     @Override
     public void onResume() {
         super.onResume();
-        setupTaskListItems();
+        //setupTaskListItems();
     }
 
     @Override
@@ -74,7 +74,7 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
         Toast.makeText(getActivity(), taskListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
                 .show();
 
-        MainActivity.db.setTaskListItemOnPreview(MainActivity.db.findCourseItem(filter).getTasks().get(position));
+        MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
         taskPreviewFragment = new TaskPreviewFragment();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
