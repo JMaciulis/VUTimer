@@ -151,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
     private void selectItem(int position) {
         // Create a new fragment and specify the planet to show based on position
         displayView(position);
-            // Highlight the selected item, update the title, and close the drawer
+        // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-            mDrawerLayout.closeDrawer(mDrawerList);
+        mDrawerLayout.closeDrawer(mDrawerList);
 
     }
     private void displayView(int position){
