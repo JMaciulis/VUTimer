@@ -24,18 +24,29 @@ import java.util.List;
 public class TaskListFragment extends ListFragment  implements AdapterView.OnItemClickListener {
     public TaskPreviewFragment taskPreviewFragment;
     TaskListAdapter adapter;
-    private List<TaskListItem> taskListItems;
+    List<TaskListItem> taskListItems;
+    String filter = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        taskListItems = MainActivity.db.getTaskListItemList();
+        setupTaskListItems();
+
+    }
+    private void setupTaskListItems(){
+        if (filter != "") {
+            taskListItems = MainActivity.db.findCourseItem(filter).getTasks();
+        }else {
+            taskListItems = MainActivity.db.getTaskListItemList();
+        }
+
+
     }
     @Override
     public void onResume() {
         super.onResume();
-        taskListItems = MainActivity.db.getTaskListItemList();
+        setupTaskListItems();
     }
 
     @Override
@@ -46,6 +57,7 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
+        //setupTaskListItems();
         adapter = new TaskListAdapter(getActivity(), taskListItems);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
@@ -71,6 +83,10 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
         fragmentTransaction.commit();
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(taskListItems.get(position).getTitle());
+    }
+
+    public void setfilter(String courseTitle){
+        this.filter = courseTitle;
     }
 
 }

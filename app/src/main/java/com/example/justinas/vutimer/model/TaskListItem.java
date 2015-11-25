@@ -14,9 +14,10 @@ public class TaskListItem {
     long hour;
     private int icon;
 
-    public TaskListItem(String title,String description) {
+    public TaskListItem(String title,String description,String parentCourse) {
         this.title = title;
         this.description = description;
+        this.parentCourse = parentCourse;
         second = 0;
         minute = 0;
         hour = 0;

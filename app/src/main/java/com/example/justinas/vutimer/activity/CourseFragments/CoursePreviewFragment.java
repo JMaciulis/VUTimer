@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.CourseFragments.CourseListFragment;
 import com.example.justinas.vutimer.activity.MainActivity;
+import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.model.CourseListItem;
 
 /**
@@ -37,11 +38,13 @@ public class CoursePreviewFragment extends Fragment {
 
         TextView txtCourseName = (TextView) view.findViewById(R.id.course_name);
         TextView txtCourseDescription = (TextView) view.findViewById(R.id.course_description);
+        TextView txtCourseTaskCount = (TextView) view.findViewById(R.id.task_count);
 
         cItem = MainActivity.db.getCourseListItemOnPreview();
 
         txtCourseName.setText(cItem.getTitle());
         txtCourseDescription.setText(cItem.getDescription());
+        txtCourseTaskCount.setText(cItem.getTaskCount());
         return view;
     }
     @Override
@@ -52,6 +55,9 @@ public class CoursePreviewFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         switch(id){
+            case R.id.action_open_tasks:
+                goToMyTaskList();
+                return true;
             case R.id.action_edit:
                 Toast.makeText(getActivity(), "Edit", Toast.LENGTH_SHORT)
                         .show();
@@ -80,5 +86,15 @@ public class CoursePreviewFragment extends Fragment {
         fragmentTransaction.replace(R.id.container_body, listFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+    private void goToMyTaskList(){
+        TaskListFragment TLF = new TaskListFragment();
+        TLF.setfilter(cItem.getTitle());
+
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, TLF);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 }

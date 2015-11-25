@@ -10,11 +10,15 @@ public class CourseListItem {
 
     private String title;
     private String description;
+    private List<TaskListItem> tasks;
     private int icon;
 
     public CourseListItem(String title,String description) {
         this.title = title;
         this.description = description;
+        this.tasks = new ArrayList<TaskListItem>();
+        //TaskListItem i = new TaskListItem("sudas","sudas","Home");
+        //tasks.add(i);
         //this.icon = icon;
 
     }
@@ -24,7 +28,7 @@ public class CourseListItem {
     }
 
     public String getDescription(){
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description){
@@ -43,4 +47,14 @@ public class CourseListItem {
         this.icon = icon;
     }
 
+    public List<TaskListItem> getTasks(){
+        return tasks;
+    }
+
+    public void addTask(TaskListItem item){
+        tasks.add(item);
+    }
+    public String getTaskCount(){
+        return ""+tasks.size();
+    }
 }

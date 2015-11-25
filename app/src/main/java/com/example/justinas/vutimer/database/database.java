@@ -73,15 +73,21 @@ public class database {
 
         String[] taskNames;
         String[] taskDescr;
+        String[] taskParentCourse;
 
         taskNames = context.getResources().getStringArray(R.array.taskNameArr);
         taskDescr = context.getResources().getStringArray(R.array.taskDescrArr);
+        taskParentCourse = context.getResources().getStringArray(R.array.taskParentArr);
 
         list = new ArrayList<TaskListItem>();
 
         for (int i = 0; i < taskNames.length; i++) {
-            TaskListItem items = new TaskListItem(taskNames[i],taskDescr[i]);
+            TaskListItem items = new TaskListItem(taskNames[i],taskDescr[i],taskParentCourse[i]);
+            //new
+            findCourseItem(taskParentCourse[i]).addTask(items);
 
+            //end
+            //courseListItemList.get(0).addTask(items);
             list.add(items);
         }
 
@@ -93,7 +99,6 @@ public class database {
     public List<TaskListItem> getTaskListItemList() {
         return taskListItemList;
     }
-
     public void setTaskListItemOnPreview(TaskListItem taskListItem) {
         taskListItemOnPreview = taskListItem;
     }
@@ -102,5 +107,25 @@ public class database {
     }
     public void deleteTaskItem(TaskListItem tItem){
         taskListItemList.remove(tItem);
+    }
+    public CourseListItem findCourseItem(String filter){
+        for(CourseListItem c : courseListItemList){
+            if(c.getTitle() != null && c.getTitle().contains(filter)){
+                return c;
+            }
+        }
+        return null;
+    }
+    public void addTaskToCourse(String filter, TaskListItem item){
+        findCourseItem(filter).addTask(item);
+    }
+    public String[] getCourseTitles(){
+        List<String> arr = new ArrayList<String>();
+        for(CourseListItem c: courseListItemList){
+            arr.add(c.getTitle());
+        }
+        String[] tmp = new String[arr.size()];
+        arr.toArray(tmp);
+        return tmp;
     }
 }

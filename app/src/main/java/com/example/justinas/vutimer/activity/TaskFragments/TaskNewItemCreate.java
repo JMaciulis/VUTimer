@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
@@ -28,10 +31,11 @@ import com.example.justinas.vutimer.model.TaskListItem;
  * Use the {@link TaskNewItemCreate#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TaskNewItemCreate extends Fragment implements View.OnClickListener{
+public class TaskNewItemCreate extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     Button buttonAdd;
-
+    Spinner spinner;
+    String[] courses;
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -65,17 +69,25 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        courses = MainActivity.db.getCourseTitles();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_task_new_item_create, container, false);
+        // Inflate the layout for this fragment
+        spinner = (Spinner) view.findViewById(R.id.course_spinner);
+        //spinner.setOnItemSelectedListener(this);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item,courses);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
         buttonAdd = (Button)  view.findViewById(R.id.new_course_add_button);
         buttonAdd.setOnClickListener(this);
         return view;
@@ -103,7 +115,9 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener{
         String task_name = editTaskNameText.getText().toString();
         EditText  editTaskDescrText = (EditText) getActivity().findViewById(R.id.task_description_edit);
         String task_description = editTaskDescrText.getText().toString();
-        TaskListItem taskListItem = new TaskListItem(task_name,task_description);
+        String task_parent = spinner.getSelectedItem().toString(); //EDIT!!!
+        TaskListItem taskListItem = new TaskListItem(task_name,task_description,task_parent);
+        MainActivity.db.addTaskToCourse(task_parent,taskListItem);
         MainActivity.db.addTaskListItemToList(taskListItem);
         Toast.makeText(getActivity(), "Task Added", Toast.LENGTH_SHORT).show();
         goToTaskList();
@@ -131,6 +145,16 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener{
 
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 

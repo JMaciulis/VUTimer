@@ -45,7 +45,16 @@
         android:layout_below="@+id/task_description"
         android:layout_alignLeft="@+id/task_description"
         android:layout_alignStart="@+id/task_description" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:text="Course"
+        android:id="@+id/task_course_parent"
+        android:textSize="16dp"
+        android:layout_below="@+id/c_p_divider2"
+        android:layout_alignLeft="@+id/task_description"
+        android:layout_alignStart="@+id/task_description"
+        android:paddingTop="6dp" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

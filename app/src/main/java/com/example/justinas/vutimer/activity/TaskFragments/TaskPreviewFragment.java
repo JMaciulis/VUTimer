@@ -49,6 +49,8 @@ public class TaskPreviewFragment extends Fragment{
 
         TextView txtTaskName = (TextView) view.findViewById(R.id.task_name);
         final TextView txtTaskDescription = (TextView) view.findViewById(R.id.task_description);
+        TextView txtTaskParent = (TextView) view.findViewById(R.id.task_course_parent);
+
         final TextView txtTaskTime = (TextView) view.findViewById(R.id.taskTime);
 
         tItem = MainActivity.db.getTaskListItemOnPreview();
@@ -56,54 +58,8 @@ public class TaskPreviewFragment extends Fragment{
         txtTaskName.setText(tItem.getTitle());
         txtTaskDescription.setText(tItem.getDescription());
         txtTaskTime.setText(tItem.getTimeString());
-        /*
-        startButton.setOnClickListener(new View.OnClickListener() {
-            long time2;
-            @Override
-            public void onClick(View v) {
-                chronometer.setBase(SystemClock.elapsedRealtime() + time);
-                chronometer.start();
-                Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
-            }
-        });
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                time = chronometer.getBase()-SystemClock.elapsedRealtime();
-                chronometer.stop();
-                Toast.makeText(getActivity(), "Pause", Toast.LENGTH_SHORT).show();
-            }
-        });
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chronometer.stop();
-                long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
-                second = second +(elapsedMillis / 1000) % 60;
-                if (second > 59){
-                    minute = minute +(elapsedMillis / (1000 * 60)) % 60 + (second/60);
-                    second = second % 60;
-                }
-                else{
-                    minute = minute +(elapsedMillis / (1000 * 60)) % 60;
-                }
-                if (minute > 59){
-                    hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24 + minute / 60;
-                }
-                hour = hour + (elapsedMillis / (1000 * 60 * 60)) % 24;
+        txtTaskParent.setText(tItem.getParentCourse());
 
-                //String timeChronometer = String.format(tItem.getDescription()+ " Timer %02d:%02d:%02d", hour, minute, second);
-                long[] timeObj = {second,minute,hour};
-                tItem.addDeltaTime(timeObj);
-                txtTaskTime.setText(tItem.getTimeString());
-                time = 0;
-                second = 0;
-                minute = 0;
-                hour = 0;
-                Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
         return view;
     }
     @Override

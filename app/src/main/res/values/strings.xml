@@ -17,39 +17,47 @@
     <string name="title_tasks">Tasks</string>
     <string name="title_timetable">Timetable</string>
     <string-array name="courseNameArr">
-        <item>Home</item>
-        <item>Tutorials</item>
-        <item>My Apps</item>
-        <item>OS Versions</item>
-        <item>Tools</item>
-        <item>About Us</item>
+        <item>Anglu k.</item>
+        <item>Kombinatorika</item>
+        <item>Statistika</item>
+        <item>Pascalis</item>
+        <item>C++</item>
+        <item>Android</item>
     </string-array>
 
     <string-array name="courseDescrArr">
-        <item>Home</item>
-        <item>Tutorials</item>
-        <item>My Apps</item>
-        <item>OS Versions</item>
-        <item>Tools</item>
-        <item>About Us</item>
+        <item>Pas P.Petraiti</item>
+        <item>Antradieni</item>
+        <item>Treciadieni</item>
+        <item>Pas A.Antana</item>
+        <item>Kurti programa</item>
+        <item>App creation</item>
     </string-array>
 
     <string-array name="taskNameArr">
-        <item>Task Home</item>
-        <item>Task Tutorials</item>
-        <item>Task My Apps</item>
-        <item>Task OS Versions</item>
-        <item>Task Tools</item>
-        <item>Task About Us</item>
+        <item>Kontrolinis</item>
+        <item>Pristatymas</item>
+        <item>Namu darbai</item>
+        <item>Kolis</item>
+        <item>Kolis</item>
+        <item>Atsiskaitymas</item>
     </string-array>
 
     <string-array name="taskDescrArr">
-        <item>Home1</item>
-        <item>Tutorials1</item>
-        <item>My Apps1</item>
-        <item>OS Versions1</item>
-        <item>Tools1</item>
-        <item>About Us1</item>
+        <item>Kontrolinis</item>
+        <item>Pristatymas</item>
+        <item>Namu darbai</item>
+        <item>Kolis</item>
+        <item>Kolis</item>
+        <item>Atsiskaitymas</item>
+    </string-array>
+    <string-array name="taskParentArr">
+        <item>Kombinatorika</item>
+        <item>Kombinatorika</item>
+        <item>Anglu k.</item>
+        <item>Anglu k.</item>
+        <item>C++</item>
+        <item>Android</item>
     </string-array>
 
     <string-array name="drawerMenu">
@@ -76,4 +84,7 @@
     <string name="task_name_new">Task name</string>
     <string name="task_time_name_new">Task Time name</string>
     <string name="add_task_button">ADD TASK</string>
+
+
+    <string name="settings_open_task_list">Show tasks</string>
 </resources>

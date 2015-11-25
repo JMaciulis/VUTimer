@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
         android:layout_width="320dp"
         android:layout_height="32dp"
@@ -68,4 +67,14 @@
         android:layout_above="@+id/c_p_divider2"
         android:layout_toLeftOf="@+id/c_p_divider1"
         android:layout_toStartOf="@+id/c_p_divider1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task count"
+        android:textSize="16dp"
+        android:id="@+id/task_count"
+        android:layout_below="@+id/c_p_divider2"
+        android:layout_alignLeft="@+id/c_p_divider2"
+        android:layout_alignStart="@+id/c_p_divider2" />
 </RelativeLayout>

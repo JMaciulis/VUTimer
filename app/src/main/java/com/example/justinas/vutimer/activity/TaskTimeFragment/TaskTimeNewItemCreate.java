@@ -17,14 +17,15 @@ import android.widget.Toast;
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.model.TaskListItem;
+import com.example.justinas.vutimer.model.TaskTimeListItem;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link com.example.justinas.vutimer.activity.TaskTimeFragments.TaskTimeNewItemCreate.OnFragmentInteractionListener} interface
+ *
  * to handle interaction events.
- * Use the {@link com.example.justinas.vutimer.activity.TaskTimeFragments.TaskTimeNewItemCreate#newInstance} factory method to
+ *
  * create an instance of this fragment.
  */
 public class TaskTimeNewItemCreate extends Fragment implements View.OnClickListener{
@@ -96,18 +97,18 @@ public class TaskTimeNewItemCreate extends Fragment implements View.OnClickListe
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
+/*
     public void saveNewCourse(View view){
         EditText editTaskNameText = (EditText) getActivity().findViewById(R.id.task_time_name_edit);
         String task_time_name = editTaskNameText.getText().toString();
         EditText  editTaskDescrText = (EditText) getActivity().findViewById(R.id.task_time_description_edit);
         String task_time_description = editTaskDescrText.getText().toString();
-        TaskListItem taskListItem = new TaskListItem(task_time_name,task_time_description);
+        TaskTimeListItem taskTimeListItem = new TaskTimeListItem(task_time_name,task_time_description,);
         MainActivity.db.addTaskListItemToList(taskListItem);
         Toast.makeText(getActivity(), "Task Added", Toast.LENGTH_SHORT).show();
         goToTaskList();
     }
-
+*/
     private void goToTaskList() {
         ListFragment listFragment = new com.example.justinas.vutimer.activity.TaskTimeFragment.TaskTimeListFragment();
 
@@ -126,7 +127,7 @@ public class TaskTimeNewItemCreate extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        saveNewCourse(v);
+        //saveNewCourse(v);
         InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),

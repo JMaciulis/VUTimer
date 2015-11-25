@@ -28,7 +28,6 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
     CourseListAdapter adapter;
     private List<CourseListItem> courseListItems;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
