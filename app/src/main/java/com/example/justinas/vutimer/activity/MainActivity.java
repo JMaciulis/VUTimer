@@ -167,16 +167,20 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
             case 0:
                 list = false;
                 fragment = new CoursesListFragment();
+                title = "VUTimer";
                 break;
             case 1:
                 list = true;
                 listFragment = new CourseListFragment();
+                title = "Courses";
                 break;
             case 2:
                 list = false;
                 TaskListFragment tlf = new TaskListFragment();
                 tlf.showAll(true);
+                MainActivity.db.setCourseListItemOnPreview(null);
                 fragment = tlf;
+                title = "Tasks";
                 break;
             case 3:
                 fragment = new CourseDetails();
@@ -208,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
 
             }
         }
-        //setTitle(title);
+        setTitle(title);
     }
     @Override
     public void setTitle(CharSequence title) {

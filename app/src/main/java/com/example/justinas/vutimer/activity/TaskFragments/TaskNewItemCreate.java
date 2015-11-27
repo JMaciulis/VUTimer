@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.CourseDetails;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.model.TaskListItem;
 
@@ -130,11 +131,16 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener,
     }
 
     private void goToTaskList() {
-        TaskListFragment listFragment = new TaskListFragment();
-        listFragment.showAll(true);
-        //TODO reik fixo
+        Fragment fragment;
+        if(MainActivity.db.getCourseListItemOnPreview() != null){
+            fragment = new CourseDetails();
+        }else{
+            fragment = new TaskListFragment();
+            //listFragment.showAll(true);
+            //TODO reik fixo
+        }
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, listFragment);
+        fragmentTransaction.replace(R.id.container_body, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

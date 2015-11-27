@@ -1,6 +1,7 @@
 package com.example.justinas.vutimer.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,6 +11,9 @@ public class TaskListItem {
     private String title;
     private String description;
     private String parentCourse;
+    private Date dateCreated;
+    private Date deadline;
+    private Boolean hasDeadline;
 
     List<TaskTimeListItem> timeList;
 
@@ -19,9 +23,20 @@ public class TaskListItem {
         this.title = title;
         this.description = description;
         this.parentCourse = parentCourse;
-
+        this.hasDeadline = false;
+        dateCreated = new Date();
         timeList = new ArrayList<TaskTimeListItem>();
 
+    }
+    public void setDeadline(Date date){
+        hasDeadline = true;
+        deadline = date;
+    }
+    public Date getDeadline(){
+        return deadline;
+    }
+    public Boolean getHasDealine(){
+        return hasDeadline;
     }
     public void setParentCourse(String parentCourse){
         this.parentCourse = parentCourse;

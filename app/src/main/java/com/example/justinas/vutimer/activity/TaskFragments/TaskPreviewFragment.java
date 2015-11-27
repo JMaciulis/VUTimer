@@ -5,6 +5,8 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.ChronometerClass;
+import com.example.justinas.vutimer.activity.CourseDetails;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.model.TaskListItem;
@@ -88,11 +91,19 @@ public class TaskPreviewFragment extends Fragment{
 
 
     private void goToTaskList(){
-        TaskListFragment listFragment = new TaskListFragment();
-        listFragment.setfilter(tItem.getParentCourse());
+        Fragment fragment;
+        if(MainActivity.db.getCourseListItemOnPreview() != null){
+            fragment = new CourseDetails();
+
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(MainActivity.db.getCourseListItemOnPreview().getTitle());
+        }else{
+            fragment = new TaskListFragment();
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("Tasks");
+        }
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, listFragment);
+        fragmentTransaction.replace(R.id.container_body, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+
     }
 }

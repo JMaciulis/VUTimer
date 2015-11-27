@@ -38,18 +38,13 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
 
     }
     private void setupTaskListItems(){
-        /*
-        if (filter != "") {
-            taskListItems = MainActivity.db.findCourseItem(filter).getTasks();
-        }else {
-            taskListItems = MainActivity.db.getTaskListItemList();
-        }
-        filter ="";
-        */
         if(showAll){
             taskListItems = MainActivity.db.getTaskListItemList();
         }else{
-            taskListItems = MainActivity.db.getCourseListItemOnPreview().getTasks();
+            if (MainActivity.db.getCourseListItemOnPreview() != null)
+                taskListItems = MainActivity.db.getCourseListItemOnPreview().getTasks();
+            else
+                taskListItems = MainActivity.db.getTaskListItemList();
         }
         showAll = false;
     }

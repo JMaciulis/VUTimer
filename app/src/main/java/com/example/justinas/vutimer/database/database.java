@@ -135,4 +135,7 @@ public class database {
         arr.toArray(tmp);
         return tmp;
     }
+    public void setCPreviewNull(){
+        courseListItemOnPreview = null;
+    }
 }
