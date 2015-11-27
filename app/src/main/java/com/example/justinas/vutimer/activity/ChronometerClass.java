@@ -76,6 +76,10 @@ public class ChronometerClass extends Fragment implements OnClickListener{
         pauseButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
 
+        startButton.setEnabled(true);
+        stopButton.setEnabled(false);
+        pauseButton.setEnabled(false);
+
         return view;
     }
 
@@ -101,13 +105,16 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 chronometer.setBase(SystemClock.elapsedRealtime() + time);
                 Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
                 startDate = new Date();
-                if(!chronometer.isActivated())
-                    chronometer.start();
+                chronometer.start();
+                startButton.setEnabled(false);
+                stopButton.setEnabled(true);
+                pauseButton.setEnabled(true);
                 break;
             case R.id.pauseButton:
                 time = chronometer.getBase()-SystemClock.elapsedRealtime();
                 Toast.makeText(getActivity(), "Pause", Toast.LENGTH_SHORT).show();
                 chronometer.stop();
+                startButton.setEnabled(true);
                 break;
             case R.id.stopButton:
                 chronometer.stop();

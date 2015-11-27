@@ -1,6 +1,8 @@
 package com.example.justinas.vutimer.activity.TaskFragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,14 +16,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.CourseDetails;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.model.TaskListItem;
+
+import java.util.Calendar;
 
 
 /**
@@ -37,6 +43,8 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener,
     Button buttonAdd;
     Spinner spinner;
     String[] courses;
+
+    private int year, month, day;
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -97,8 +105,12 @@ public class TaskNewItemCreate extends Fragment implements View.OnClickListener,
         spinner.setSelection(spinnerPosition);
         buttonAdd = (Button)  view.findViewById(R.id.new_course_add_button);
         buttonAdd.setOnClickListener(this);
+
+
         return view;
     }
+
+
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
