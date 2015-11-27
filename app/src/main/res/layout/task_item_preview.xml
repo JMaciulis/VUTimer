@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="320dp"
@@ -96,7 +95,7 @@
         android:id="@+id/timeLabel"
         android:textSize="24dp"
         android:textStyle="bold"
-        android:layout_above="@+id/taskTime"
+        android:layout_below="@+id/task_course_parent"
         android:layout_centerHorizontal="true" />
 
     <ImageView

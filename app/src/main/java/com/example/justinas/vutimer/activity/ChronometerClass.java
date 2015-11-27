@@ -101,7 +101,8 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 chronometer.setBase(SystemClock.elapsedRealtime() + time);
                 Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
                 startDate = new Date();
-                chronometer.start();
+                if(!chronometer.isActivated())
+                    chronometer.start();
                 break;
             case R.id.pauseButton:
                 time = chronometer.getBase()-SystemClock.elapsedRealtime();

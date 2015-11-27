@@ -10,7 +10,7 @@
         android:id="@+id/Photo_pen"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/pen" />
+        android:background="@drawable/pen2" />
 
     <TextView
         android:layout_width="wrap_content"
