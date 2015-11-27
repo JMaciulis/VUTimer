@@ -8,14 +8,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_pages"
+        android:src="@drawable/ic_course_item"
         />
     <TextView
         android:id="@+id/coursesTextTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Course_name"
-        android:textSize="24sp"
+        android:textSize="24dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/coursesImageView"
         android:layout_toEndOf="@+id/coursesImageView"
@@ -27,6 +27,7 @@
         android:text ="Description"
         android:layout_below="@+id/coursesTextTop"
         android:layout_alignLeft="@+id/coursesTextTop"
-        android:layout_alignStart="@+id/coursesTextTop" />
+        android:layout_alignStart="@+id/coursesTextTop"
+        android:textSize="18dp" />
 
 </RelativeLayout>
