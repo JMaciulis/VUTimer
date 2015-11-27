@@ -2,6 +2,7 @@ package com.example.justinas.vutimer.model;
 
 import com.example.justinas.vutimer.activity.MainActivity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,6 +12,8 @@ public class TaskTimeListItem {
     private String title ="";
     private String description ="";
     private List<TaskTimeListItem> timeList;
+    private Date startDate;
+    private Date endDate;
 
     long time;
     long second;
@@ -18,11 +21,13 @@ public class TaskTimeListItem {
     long hour;
     private int icon;
 
-    public TaskTimeListItem(long[] time) {
+    public TaskTimeListItem(long[] time, Date start, Date end) {
         title = MainActivity.db.getTaskListItemOnPreview().getTitle();
         second = time[0];
         minute = time[1];
         hour = time[2];
+        this.startDate = start;
+        this.endDate = end;
 
     }
 
@@ -72,5 +77,10 @@ public class TaskTimeListItem {
             time += second+"s";
         return time;
     }
-
+    public String getStartDate(){
+        return (String) android.text.format.DateFormat.format("HH:mm", startDate);
+    }
+    public String getEndDate(){
+        return (String) android.text.format.DateFormat.format("HH:mm", endDate);
+    }
 }

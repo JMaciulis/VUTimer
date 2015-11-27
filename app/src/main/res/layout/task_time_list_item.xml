@@ -32,4 +32,15 @@
         android:layout_below="@+id/taskTime"
         android:layout_alignLeft="@+id/taskTime"
         android:layout_alignStart="@+id/taskTime" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/taskPeriod"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textIsSelectable="false"
+        android:textSize="18dp" />
 </RelativeLayout>

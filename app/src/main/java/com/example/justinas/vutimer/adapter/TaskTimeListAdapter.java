@@ -51,12 +51,13 @@ public class TaskTimeListAdapter extends BaseAdapter{
 
         TextView txtTaskTime = (TextView) convertView.findViewById(R.id.taskTime);
         TextView txtTaskDescription = (TextView) convertView.findViewById(R.id.taskName);
+        TextView txtTaskPeriod = (TextView) convertView.findViewById(R.id.taskPeriod);
 
         TaskTimeListItem pos = taskTimeListItem.get(position);
 
         txtTaskTime.setText(pos.getTimeString());
         txtTaskDescription.setText(pos.getTitle());
-
+        txtTaskPeriod.setText(pos.getStartDate()+" - "+pos.getEndDate());
         return convertView;
     }
 
