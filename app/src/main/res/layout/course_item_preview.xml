@@ -5,13 +5,13 @@
 
     <TextView
         android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_height="42dp"
         android:text="Name"
         android:id="@+id/course_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="32dp"
+        android:textSize="26dp"
         android:paddingTop="6dp"
         android:layout_toRightOf="@+id/imageView"
         android:layout_toEndOf="@+id/imageView" />
@@ -27,10 +27,10 @@
         android:layout_alignStart="@+id/course_description" />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="42dp"
         android:text="Description"
         android:id="@+id/course_description"
-        android:textSize="32dp"
+        android:textSize="26dp"
         android:layout_below="@+id/c_p_divider1"
         android:layout_alignLeft="@+id/course_name"
         android:layout_alignStart="@+id/course_name"
