@@ -38,13 +38,13 @@ public class CoursePreviewFragment extends Fragment {
 
         TextView txtCourseName = (TextView) view.findViewById(R.id.course_name);
         TextView txtCourseDescription = (TextView) view.findViewById(R.id.course_description);
-        TextView txtCourseTaskCount = (TextView) view.findViewById(R.id.task_count);
+        //TextView txtCourseTaskCount = (TextView) view.findViewById(R.id.task_count);
 
         cItem = MainActivity.db.getCourseListItemOnPreview();
 
         txtCourseName.setText(cItem.getTitle());
         txtCourseDescription.setText(cItem.getDescription());
-        txtCourseTaskCount.setText(cItem.getTaskCount());
+        //txtCourseTaskCount.setText(cItem.getTaskCount());
         return view;
     }
     @Override
