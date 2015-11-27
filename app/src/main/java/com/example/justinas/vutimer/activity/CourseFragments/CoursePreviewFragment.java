@@ -55,9 +55,6 @@ public class CoursePreviewFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         switch(id){
-            case R.id.action_open_tasks:
-                goToMyTaskList();
-                return true;
             case R.id.action_edit:
                 Toast.makeText(getActivity(), "Edit", Toast.LENGTH_SHORT)
                         .show();
