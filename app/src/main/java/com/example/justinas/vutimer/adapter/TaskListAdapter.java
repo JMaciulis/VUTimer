@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.model.CourseListItem;
 import com.example.justinas.vutimer.model.TaskListItem;
 
@@ -51,11 +52,14 @@ public class TaskListAdapter extends BaseAdapter{
 
         TextView txtCourseName = (TextView) convertView.findViewById(R.id.coursesTextTop);
         TextView txtCourseDescription = (TextView) convertView.findViewById(R.id.coursesTextBottom);
-
         TaskListItem pos = taskListItem.get(position);
 
         txtCourseName.setText(pos.getTitle());
-        txtCourseDescription.setText(pos.getParentCourse());
+        if(MainActivity.db.getCourseListItemOnPreview() == null) {
+            txtCourseDescription.setText(pos.getParentCourse());
+        }else{
+            txtCourseDescription.setText(pos.getDescription());
+        }
 
         return convertView;
     }
