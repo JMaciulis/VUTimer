@@ -55,7 +55,7 @@ public class TaskListAdapter extends BaseAdapter{
         TaskListItem pos = taskListItem.get(position);
 
         txtCourseName.setText(pos.getTitle());
-        txtCourseDescription.setText(pos.getDescription());
+        txtCourseDescription.setText(pos.getParentCourse());
 
         return convertView;
     }
