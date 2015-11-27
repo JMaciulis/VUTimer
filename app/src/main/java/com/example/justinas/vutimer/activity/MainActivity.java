@@ -3,8 +3,6 @@ package com.example.justinas.vutimer.activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -21,17 +19,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.CourseFragments.CourseListFragment;
 import com.example.justinas.vutimer.activity.CourseFragments.CourseNewItemCreate;
-import com.example.justinas.vutimer.activity.CourseFragments.CoursesListFragment;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskListFragment;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskNewItemCreate;
-import com.example.justinas.vutimer.activity.TaskTimeFragment.TaskTimeListFragment;
 import com.example.justinas.vutimer.database.database;
 
 
@@ -166,7 +161,9 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
         switch(position){
             case 0:
                 list = false;
-                fragment = new CoursesListFragment();
+//                fragment = new CoursesListFragment();
+                Photo photo = new Photo();
+                fragment = photo;
                 title = "VUTimer";
                 break;
             case 1:
@@ -183,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
                 title = "Tasks";
                 break;
             case 3:
-                fragment = new CourseDetails();
+                fragment = new Photo();
                 break;
             case 11:
                 fragment = new CourseNewItemCreate();
