@@ -85,5 +85,6 @@
     <string name="task_time_name_new">Task Time name</string>
     <string name="add_task_button">ADD TASK</string>
     <string name="photo_string">Welcome!</string>
+    <string name="chart">Chart Fragment</string>
 
 </resources>
