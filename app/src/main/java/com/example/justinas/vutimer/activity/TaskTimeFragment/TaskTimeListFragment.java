@@ -31,7 +31,7 @@ public class TaskTimeListFragment extends ListFragment  implements AdapterView.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
         taskTimeListItems = MainActivity.db.getTaskListItemOnPreview().getTimeArr();
     }
     @Override
