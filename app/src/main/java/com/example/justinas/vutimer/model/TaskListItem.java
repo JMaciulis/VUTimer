@@ -47,8 +47,8 @@ public class TaskListItem {
     public String getTitle() {
         return title;
     }
-    public void addTime(long[] time){
-        TaskTimeListItem item = new TaskTimeListItem(time);
+    public void addTime(long[] time,Date start, Date end){
+        TaskTimeListItem item = new TaskTimeListItem(time,start,end);
         timeList.add(item);
     }
     public List<TaskTimeListItem> getTimeArr(){

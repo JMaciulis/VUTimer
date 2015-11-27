@@ -21,6 +21,8 @@ import com.example.justinas.vutimer.R;
 import com.example.justinas.vutimer.activity.TaskFragments.TaskPreviewFragment;
 import com.example.justinas.vutimer.model.TaskListItem;
 
+import java.util.Date;
+
 
 public class ChronometerClass extends Fragment implements OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +30,8 @@ public class ChronometerClass extends Fragment implements OnClickListener{
     Button startButton, pauseButton, stopButton;
     Chronometer chronometer;
 
+    private Date startDate;
+    private Date endDate;
 
     long time = 0;
     long second = 0;
@@ -96,6 +100,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
 
                 chronometer.setBase(SystemClock.elapsedRealtime() + time);
                 Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
+                startDate = new Date();
                 chronometer.start();
                 break;
             case R.id.pauseButton:
@@ -105,6 +110,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 break;
             case R.id.stopButton:
                 chronometer.stop();
+                endDate = new Date();
                 long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
                 second = second +(elapsedMillis / 1000) % 60;
                 if (second > 59){
@@ -122,7 +128,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 //String timeChronometer = String.format(tItem.getDescription()+ " Timer %02d:%02d:%02d", hour, minute, second);
                 long[] timeObj = {second,minute,hour};
                 //tItem.addDeltaTime(timeObj);
-                tItem.addTime(timeObj);
+                tItem.addTime(timeObj,startDate,endDate);
                 //txtTaskTime.setText(tItem.getTimeString());
                 Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
                 goToTaskPreview();
