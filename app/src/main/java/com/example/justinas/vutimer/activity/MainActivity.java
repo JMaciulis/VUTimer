@@ -1,5 +1,6 @@
 package com.example.justinas.vutimer.activity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -30,7 +31,9 @@ import com.example.justinas.vutimer.activity.TaskFragments.TaskNewItemCreate;
 import com.example.justinas.vutimer.database.database;
 
 
-public class MainActivity extends AppCompatActivity implements TaskNewItemCreate.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements TaskNewItemCreate.OnFragmentInteractionListener,SQL.OnFragmentInteractionListener {
+    static public DataBaseHelper myDB;
+
     private Toolbar toolbar;
 
     public static database db;
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
 
         db = new database(this);
         setContentView(R.layout.activity_main);
-
+        myDB = new DataBaseHelper(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,12 +113,15 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Fragment fragment = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
         //noinspection SimplifiableIfStatement
         switch(id){
-            case R.id.action_settings:
+            /*case R.id.action_settings:
                 Toast.makeText(this,"Settings",Toast.LENGTH_SHORT).show();
-                return true;
+                fragment = new SQL();
+                fragmentManager.beginTransaction().replace(R.id.container_body,fragment).commit();
+                return true;*/ // no Case SETTINGS
             case R.id.action_edit:
                 Toast.makeText(this,"Main_edit",Toast.LENGTH_SHORT).show();
                 return true;
@@ -134,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -179,9 +186,9 @@ public class MainActivity extends AppCompatActivity implements TaskNewItemCreate
                 fragment = tlf;
                 title = "Tasks";
                 break;
-            case 3:
+            /*case 3:
                 fragment = new Photo();
-                break;
+                break;*/
             case 11:
                 fragment = new CourseNewItemCreate();
                 break;

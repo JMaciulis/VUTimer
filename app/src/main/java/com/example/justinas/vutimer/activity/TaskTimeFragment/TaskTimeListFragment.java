@@ -1,18 +1,21 @@
 package com.example.justinas.vutimer.activity.TaskTimeFragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.justinas.vutimer.R;
+import com.example.justinas.vutimer.activity.ChronometerClass;
 import com.example.justinas.vutimer.activity.MainActivity;
 import com.example.justinas.vutimer.adapter.TaskListAdapter;
 import com.example.justinas.vutimer.adapter.TaskTimeListAdapter;
@@ -31,7 +34,7 @@ public class TaskTimeListFragment extends ListFragment  implements AdapterView.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
         taskTimeListItems = MainActivity.db.getTaskListItemOnPreview().getTimeArr();
     }
     @Override
@@ -54,9 +57,23 @@ public class TaskTimeListFragment extends ListFragment  implements AdapterView.O
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.task_list_toolbar, menu);
+        inflater.inflate(R.menu.menu_task_preview, menu);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch(id){
+            case R.id.action_edit_task:
+                ChronometerClass ch = new ChronometerClass();
+                Fragment fragment = ch;
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                return true;
+        }
+        return false;
+    }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         /*

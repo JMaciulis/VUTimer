@@ -6,4 +6,10 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="colorAccent">#cd9965</color>
+
+
+    <color name="Green">#ff00db8c</color>
+    <color name="Red">#ffd7454e</color>
+    <color name="Black">#000000</color>
+    <color name="White">#ffffff</color>
 </resources>

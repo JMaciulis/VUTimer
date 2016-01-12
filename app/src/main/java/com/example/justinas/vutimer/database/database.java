@@ -2,6 +2,7 @@ package com.example.justinas.vutimer.database;
 
 import android.content.Context;
 
+import com.example.justinas.vutimer.model.ColorListItem;
 import com.example.justinas.vutimer.model.CourseListItem;
 
 import com.example.justinas.vutimer.R;
@@ -21,11 +22,14 @@ public class database {
     CourseListItem courseListItemOnPreview;
     List<TaskListItem> taskListItemList;
     TaskListItem taskListItemOnPreview;
+    List<ColorListItem> colorListItems;
+    ColorListItem colorListItemOnPreview;
 
     public database(Context context){
         this.context = context;
         setCourseListItemList();
         setTaskListItemList();
+        setColorsItemList();
     }
 
     public void setCourseListItemList(){
@@ -42,7 +46,6 @@ public class database {
 
         for (int i = 0; i < courseNames.length; i++) {
             CourseListItem items = new CourseListItem(courseNames[i],courseDescr[i]);
-
             list.add(items);
         }
 
@@ -66,7 +69,47 @@ public class database {
         courseListItemList.remove(cItem);
     }
     
-    
+    //----------COLORS--------------
+
+    public void setColorsItemList(){
+        List<ColorListItem> list;
+        String[] colorTitle;
+        String[] colorPrime;
+        String[] color;
+
+        colorTitle = context.getResources().getStringArray(R.array.colorsTitle);
+        color = context.getResources().getStringArray(R.array.color);
+        colorPrime = context.getResources().getStringArray(R.array.colorPrime);
+
+
+        list = new ArrayList<ColorListItem>();
+
+        for(int i = 0; i < colorTitle.length; i++){
+            ColorListItem items = new ColorListItem(colorTitle[i],color[i],colorPrime[i]);
+            list.add(items);
+        }
+        this.colorListItems = list;
+
+    }
+    public List<ColorListItem> getColorListItems(){
+        return colorListItems;
+    }
+
+    public String[] getColorTitles(){
+        List<String> arr = new ArrayList<String>();
+        for(ColorListItem c: colorListItems){
+            arr.add(c.getColorTitle());
+        }
+        String[] tmp = new String[arr.size()];
+        arr.toArray(tmp);
+        return tmp;
+    }
+
+    public ColorListItem getColorListItemOnPreview() {
+        return colorListItemOnPreview;
+    }
+
+
     //----------TASK----------------
     private void setTaskListItemList() {
         List<TaskListItem> list;

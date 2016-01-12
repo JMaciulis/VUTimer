@@ -61,8 +61,8 @@ public class CourseListFragment extends ListFragment implements AdapterView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(getActivity(), courseListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
-                .show();
+       // Toast.makeText(getActivity(), courseListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
+          //      .show();
 
 
         //mCallback.onCourseSelected(courseListItems.get(position));

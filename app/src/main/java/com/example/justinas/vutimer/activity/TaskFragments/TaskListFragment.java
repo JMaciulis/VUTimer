@@ -76,8 +76,8 @@ public class TaskListFragment extends ListFragment  implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(getActivity(), taskListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
-                .show();
+        //Toast.makeText(getActivity(), taskListItems.get(position).getTitle(), Toast.LENGTH_SHORT)
+         //       .show();
 
         MainActivity.db.setTaskListItemOnPreview(taskListItems.get(position));
         TaskDetails taskDetails = new TaskDetails();

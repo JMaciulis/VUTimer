@@ -32,7 +32,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
 
     private Date startDate;
     private Date endDate;
-
+    boolean pause = false;
     long time = 0;
     long second = 0;
     long minute = 0;
@@ -103,23 +103,35 @@ public class ChronometerClass extends Fragment implements OnClickListener{
             case R.id.startButton:
 
                 chronometer.setBase(SystemClock.elapsedRealtime() + time);
-                Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
                 startDate = new Date();
                 chronometer.start();
                 startButton.setEnabled(false);
                 stopButton.setEnabled(true);
                 pauseButton.setEnabled(true);
+                pause = false;
                 break;
             case R.id.pauseButton:
                 time = chronometer.getBase()-SystemClock.elapsedRealtime();
-                Toast.makeText(getActivity(), "Pause", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Pause", Toast.LENGTH_SHORT).show();
+                pause = true;
                 chronometer.stop();
                 startButton.setEnabled(true);
+                pauseButton.setEnabled(false);
                 break;
             case R.id.stopButton:
                 chronometer.stop();
                 endDate = new Date();
-                long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                long elapsedMillis = 0;
+                if(!pause)
+                elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                else
+                    elapsedMillis = -time;
+                /*if(time == 0)
+                    elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                else
+                    elapsedMillis = -time;
+*/
                 second = second +(elapsedMillis / 1000) % 60;
                 if (second > 59){
                     minute = minute +(elapsedMillis / (1000 * 60)) % 60 + (second/60);
@@ -138,7 +150,7 @@ public class ChronometerClass extends Fragment implements OnClickListener{
                 //tItem.addDeltaTime(timeObj);
                 tItem.addTime(timeObj,startDate,endDate);
                 //txtTaskTime.setText(tItem.getTimeString());
-                Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Stop", Toast.LENGTH_SHORT).show();
                 goToTaskPreview();
                 break;
         }

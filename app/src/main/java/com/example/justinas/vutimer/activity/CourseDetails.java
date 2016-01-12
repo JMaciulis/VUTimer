@@ -48,7 +48,8 @@ public class CourseDetails extends Fragment {
         tabHost.setup();
         tabHost.addTab(tabHost.newTabSpec("Tab1").setIndicator("Details").setContent(mFactory));
         tabHost.addTab(tabHost.newTabSpec("Tab2").setIndicator("Tasks").setContent(mFactory));
-        tabHost.addTab(tabHost.newTabSpec("Tab3").setIndicator("Statistics").setContent(mFactory));
+//        tabHost.addTab(tabHost.newTabSpec("Tab3").setIndicator("Statistics").setContent(mFactory));
+//        No need for statistics because its not created
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
